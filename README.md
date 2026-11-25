@@ -58,9 +58,9 @@ game-ratu-kalinyamat/
    ```powershell
    python Tests/validate_data.py
    ```
-3. **Menjalankan Pengujian Headless Godot (Unit Logic + Verifikasi Semua Scene):**
+3. **Menjalankan Pengujian Headless Godot (Unit Logic + Verifikasi Semua Scene & Mini-Game):**
    ```powershell
-   & "D:\Game Godot\Godot_v4.7.2-stable_win64_console.exe" --headless --path . --script res://Tests/run_godot_tests.gd
+   & "D:\Game Godot\Godot_v4.7.2-stable_win64_console.exe" --headless --path . res://Tests/TestRunner.tscn
    ```
 
 ---
