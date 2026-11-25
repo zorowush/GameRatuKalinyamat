@@ -1,0 +1,73 @@
+{
+  "level": 2,
+  "dialogues": {
+    "syahbandar_pelabuhan": {
+      "lines": [
+        {
+          "speaker": "Ki Raksa (Syahbandar Jepara)",
+          "role": "Pengelola Bandar Niaga",
+          "portrait": "res://Assets/Characters/portrait_penasihat.png",
+          "source_tag": "FIKSI GAME",
+          "reference": "Narasi pemandu pelabuhan berdasarkan data maritim Hayati dkk. (2000) (S1)",
+          "text": "Salam sejahtera, Kanjeng Ratu! Empat pelabuhan kita — Jepara, Juana, Rembang, dan Lasem — ramai disinggahi kapal dari berbagai penjuru Nusantara. Penulis Portugis Diego de Couto bahkan mencatat Kanjeng Ratu sebagai 'Rainha de Japara, senhora poderosa e rica'!"
+        },
+        {
+          "speaker": "Ratu Kalinyamat",
+          "role": "Rainha de Japara",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "FAKTA",
+          "reference": "Diego de Couto via Chusnul Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+          "text": "Kemakmuran Jepara bertumpu pada perniagaan sistem commenda, pasokan beras, gula, kayu jati, kapuk, dan palawija, serta persahabatan erat dengan kerajaan-kerajaan maritim Nusantara."
+        },
+        {
+          "speaker": "Ki Raksa (Syahbandar Jepara)",
+          "role": "Pengelola Bandar Niaga",
+          "portrait": "res://Assets/Characters/portrait_penasihat.png",
+          "source_tag": "FIKSI GAME",
+          "reference": "Alur misi Level 2 (S1, S3)",
+          "text": "Silakan kumpulkan 3 arsip maritim & budaya di pelabuhan, kunjungi pula bengkel ukir Sungging Badar Duwung, lalu selesaikan dua tugas utama: (1) Papan Niaga Commenda (6 giliran dagang), dan (2) Balai Diplomasi untuk menyambut utusan Johor, Hitu, dan Aceh."
+        }
+      ]
+    },
+    "sungging_ukir": {
+      "lines": [
+        {
+          "speaker": "Sungging Badar Duwung (Tjie Wie Gwan)",
+          "role": "Empu Seni Ukir Mantingan",
+          "portrait": "res://Assets/Characters/portrait_sungging.png",
+          "source_tag": "TRADISI",
+          "reference": "Hayati dkk. (2000) (S1) & Sri Wintala Achmad (2020) (S3)",
+          "text": "Kanjeng Ratu, ukiran batu putih di Masjid Mantingan memadukan motif sulur flora, medali, dan stilasi fauna agar selaras dengan ajaran Islam. Dari tradisi inilah seni ukir kayu Jepara tumbuh menjadi kebanggaan Nusantara hingga berabad-abad kemudian."
+        },
+        {
+          "speaker": "Ratu Kalinyamat",
+          "role": "Pelindung Seni & Budaya",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "FAKTA",
+          "reference": "Sulistyanto (2019), Puslit Arkenas (S2)",
+          "text": "Kejayaan negeri bukan hanya dari armada kapal dan perdagangan, melainkan juga dari kehalusan budi, akulturasi budaya, dan warisan seni yang menyejahterakan rakyat."
+        }
+      ]
+    },
+    "kejayaan_selesai": {
+      "lines": [
+        {
+          "speaker": "Ki Raksa (Syahbandar Jepara)",
+          "role": "Pengelola Bandar Niaga",
+          "portrait": "res://Assets/Characters/portrait_penasihat.png",
+          "source_tag": "FAKTA",
+          "reference": "Hayati dkk. (2000) (S1)",
+          "text": "Perniagaan sistem commenda berjalan makmur dan aliansi maritim dengan Johor, Hitu, serta Aceh telah tersambung erat! Namun kabar dari Selat Malaka mendesak: monopoli Portugis kian mengancam kapal-kapal Nusantara."
+        },
+        {
+          "speaker": "Ratu Kalinyamat",
+          "role": "Ratu Bandar Jepara",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "FAKTA",
+          "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+          "text": "Saatnya kita siapkan galangan kapal kayu jati Jepara dan menghadap Dewan Perang! Mari menuju Pangkalan Armada untuk menghadapi babak Ekspedisi Malaka."
+        }
+      ]
+    }
+  }
+}

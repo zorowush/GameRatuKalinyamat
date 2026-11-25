@@ -1,0 +1,76 @@
+{
+  "challenge_id": "l2_challenge_trade",
+  "title": "Tantangan 2A: Simulasi Niaga Commenda & Rute Komoditas (6 Giliran)",
+  "commenda_info": "Sistem Commenda: Penguasa/pemodal Jepara membiayai muatan kapal dan nakhoda berlayar dari 4 pelabuhan (Jepara, Juana, Rembang, Lasem) ke bandar Nusantara, lalu keuntungan dibagi adil saat kapal kembali.",
+  "source_tag": "FAKTA",
+  "reference": "Chusnul Hayati dkk. (2000), UNDIP (S1)",
+  "ports": ["Malaka", "Maluku", "Banten", "Makassar"],
+  "turns": [
+    {
+      "id": "trade_1",
+      "commodity": "Beras Pedalaman Jawa",
+      "origin_port": "Pelabuhan Jepara & Juana",
+      "description": "Bandar dagang internasional di Semenanjung sangat bergantung pada pasokan beras Jawa sebagai bahan pangan utama penduduk dan pelaut.",
+      "correct_port": "Malaka",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "feedback_correct": "Tepat! Beras dari Jepara dan Juana merupakan pasokan pangan vital bagi bandar Malaka sebelum dan semasa konflik perdagangan.",
+      "feedback_wrong": "Belum tepat. Pikirkan bandar dagang besar di Selat yang sangat membutuhkan impor pangan beras Jawa dalam jumlah besar."
+    },
+    {
+      "id": "trade_2",
+      "commodity": "Beras & Kain Barter Rempah",
+      "origin_port": "Pelabuhan Jepara",
+      "description": "Kapal commenda Jepara membawa beras dan kebutuhan pokok untuk ditukar langsung dengan cengkih dan pala di kepulauan rempah timur Nusantara.",
+      "correct_port": "Maluku",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "feedback_correct": "Benar! Pedagang Jepara berlayar jauh ke Maluku menukar beras Jawa dengan cengkih dan pala bernilai tinggi.",
+      "feedback_wrong": "Kurang tepat. Kepulauan penghasil utama cengkih dan pala Nusantara terletak di wilayah timur (Maluku)."
+    },
+    {
+      "id": "trade_3",
+      "commodity": "Kayu Jati & Gula Jawa",
+      "origin_port": "Pelabuhan Rembang & Lasem",
+      "description": "Kesultanan di ujung barat Pulau Jawa yang berkembang sebagai bandar lada besar memerlukan kayu jati untuk galangan kapal serta gula dari pesisir utara Jawa.",
+      "correct_port": "Banten",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "feedback_correct": "Tepat! Rembang dan Lasem memasok kayu jati unggulan serta gula ke bandar lada Banten di barat Jawa.",
+      "feedback_wrong": "Belum tepat. Bandar lada utama di ujung barat Pulau Jawa adalah Banten."
+    },
+    {
+      "id": "trade_4",
+      "commodity": "Kapuk & Palawija Pesisir",
+      "origin_port": "Pelabuhan Juana & Jepara",
+      "description": "Bandar transit strategis di Sulawesi Selatan menghubungkan perdagangan Jawa dengan kawasan timur Indonesia, membutuhkan kapuk dan palawija pesisir.",
+      "correct_port": "Makassar",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "feedback_correct": "Benar! Makassar menjadi penghubung utama perniagaan maritim antara Jawa Utara dan perairan Indonesia Timur.",
+      "feedback_wrong": "Kurang tepat. Bandar dagang strategis di Sulawesi Selatan adalah Makassar."
+    },
+    {
+      "id": "trade_5",
+      "commodity": "Muatan Rempah Transito (Cengkih & Pala)",
+      "origin_port": "Pelabuhan Jepara (Transit)",
+      "description": "Rempah yang dikumpulkan kapal commenda Jepara dari timur disalurkan pula ke bandar lada barat Jawa yang ramai dikunjungi saudagar Gujarat dan Tiongkok.",
+      "correct_port": "Banten",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "feedback_correct": "Tepat! Melalui Banten, rempah transito dari jaringan dagang Jepara tersambung ke perdagangan Samudra Hindia.",
+      "feedback_wrong": "Belum tepat. Bandar barat Jawa yang menjadi tujuan saudagar Gujarat dan Tiongkok untuk lada dan rempah adalah Banten."
+    },
+    {
+      "id": "trade_6",
+      "commodity": "Kayu Jati Galangan & Logistik Beras",
+      "origin_port": "4 Pelabuhan (Jepara, Juana, Rembang, Lasem)",
+      "description": "Untuk mempererat jaringan dagang dan persiapan logistik perlawanan maritim di timur, pasokan kapal dan beras diarahkan pula mendukung sekutu di kepulauan rempah.",
+      "correct_port": "Maluku",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+      "feedback_correct": "Luar biasa! Jaringan niaga Jepara ke Maluku bukan hanya menguntungkan secara ekonomi commenda, melainkan juga membuka jalur diplomasi dengan Hitu (Ambon).",
+      "feedback_wrong": "Belum tepat. Wilayah kepulauan rempah di timur yang juga menjalin persekutuan dengan Jepara adalah Maluku."
+    }
+  ]
+}

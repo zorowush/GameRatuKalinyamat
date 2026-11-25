@@ -1,0 +1,84 @@
+{
+  "challenge_id": "l2_challenge_diplomacy",
+  "title": "Tantangan 2B: Simulasi Diplomasi Aliansi Maritim Nusantara",
+  "instruction": "Tiga utusan kerajaan Nusantara menghadap Ratu Kalinyamat di Jepara. Pilih respons diplomatik yang paling selaras dengan kebijakan strategis Jepara pada abad ke-16!",
+  "source_tag": "FAKTA",
+  "reference": "Chusnul Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+  "missions": [
+    {
+      "id": "dip_johor",
+      "envoy_name": "Utusan Kesultanan Johor (1550)",
+      "year": "1550 M",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "petition": "Sultan Alauddin Riayat Syah II dari Johor memohon dukungan armada maritim Jepara untuk membentuk persekutuan kerajaan-kerajaan Nusantara membebaskan Selat Malaka dari monopoli Portugis.",
+      "options": [
+        {
+          "text": "Menolak mentah-mentah dan memutus seluruh jalur dagang dengan Johor.",
+          "is_correct": false,
+          "feedback": "Kurang tepat. Memutus hubungan dengan Johor akan memperlemah posisi tawar niaga Jepara di Selat Malaka."
+        },
+        {
+          "text": "Menyambut seruan persekutuan maritim dan menyiapkan armada kapal Jepara untuk membantu Johor menuju Malaka.",
+          "is_correct": true,
+          "feedback": "Tepat! Pada 1550–1551 Ratu Kalinyamat merespons permintaan Johor dengan menyiapkan 40 kapal dari total 200 kapal persekutuan menuju Malaka."
+        },
+        {
+          "text": "Menyerahkan pelabuhan Jepara sepenuhnya ke bawah kendali Portugis.",
+          "is_correct": false,
+          "feedback": "Keliru. Ratu Kalinyamat justru dikenal teguh menjaga kedaulatan maritim Jepara dan menolak monopoli Portugis."
+        }
+      ]
+    },
+    {
+      "id": "dip_hitu",
+      "envoy_name": "Utusan Persekutuan Hitu, Ambon / Maluku (1565)",
+      "year": "1565 M",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+      "petition": "Rakyat Hitu di Ambon/Maluku mengirim utusan meminta bantuan Jepara menghadapi tekanan benteng dan monopoli dagang Portugis di kepulauan rempah.",
+      "options": [
+        {
+          "text": "Mengirim armada bantuan dan memperkuat solidaritas maritim dengan Hitu demi menjaga kebebasan jalur rempah Maluku.",
+          "is_correct": true,
+          "feedback": "Benar! Ratu Kalinyamat tercatat mengirimkan bantuan armada ke Hitu (Ambon) sekitar 1565 sebagai bukti jaringan diplomasi Jepara menjangkau hingga Indonesia Timur."
+        },
+        {
+          "text": "Mengabaikan utusan Hitu karena Maluku dianggap tidak penting bagi perdagangan Jepara.",
+          "is_correct": false,
+          "feedback": "Kurang tepat. Maluku adalah sumber rempah vital bagi pedagang commenda Jepara, sehingga solidaritas dengan Hitu sangat strategis."
+        },
+        {
+          "text": "Membantu Portugis menutup pelabuhan Hitu bagi kapal Nusantara.",
+          "is_correct": false,
+          "feedback": "Keliru. Jepara konsisten menolak monopoli perdagangan Portugis di perairan Nusantara."
+        }
+      ]
+    },
+    {
+      "id": "dip_aceh",
+      "envoy_name": "Utusan Kesultanan Aceh Darussalam (1573)",
+      "year": "1573 M",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+      "petition": "Sultan Ali Riayat Syah dari Aceh mengutus duta ke Jepara mengajak melancarkan serangan gabungan besar-besaran melawan benteng Portugis di Malaka.",
+      "options": [
+        {
+          "text": "Menyetujui aliansi besar Aceh–Jepara, mengerahkan armada terbesar Jepara (300 kapal) di bawah Kiai Demang Laksamana, meski perlu mewaspadai koordinasi waktu keberangkatan.",
+          "is_correct": true,
+          "feedback": "Tepat! Ratu Kalinyamat menyanggupi aliansi Aceh pada 1573 dan memberangkatkan 300 kapal (15.000 prajurit) pada 1574. Catatan sejarah menunjukkan koordinasi waktu pelayaran menjadi tantangan krusial ekspedisi ini."
+        },
+        {
+          "text": "Menunda balasan selama sepuluh tahun tanpa keputusan apa pun.",
+          "is_correct": false,
+          "feedback": "Kurang tepat. Secara historis Jepara segera mempersiapkan armada besarnya dan berlayar pada tahun 1574."
+        },
+        {
+          "text": "Menyerang balik kapal dagang Aceh di perairan Jawa.",
+          "is_correct": false,
+          "feedback": "Keliru. Aceh dan Jepara justru menjalin persahabatan strategis menghadapi kekuatan Portugis di Malaka."
+        }
+      ]
+    }
+  ]
+}
