@@ -1,0 +1,55 @@
+{
+  "challenge_id": "l1_challenge_chronology",
+  "title": "Tantangan 1A: Urutan Kronologi Konflik Demak",
+  "instruction": "Susun 5 peristiwa sejarah konflik suksesi Kesultanan Demak berikut dari yang PALING AWAL (urutan 1) hingga PALING AKHIR (urutan 5), lalu tekan 'Periksa Urutan'.",
+  "source_tag": "FAKTA",
+  "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+  "success_summary": "Tepat sekali! Anda berhasil merangkai kronologi konflik Demak secara runtut: dari pembunuhan Pangeran Sekar Seda ing Lepen, balas dendam Arya Penangsang terhadap Sunan Prawata (1549) dan Pangeran Hadiri, laku prihatin di Danaraja, hingga sayembara Hadiwijaya dan penobatan Ratu Kalinyamat sebagai penguasa Jepara (1549/1550).",
+  "events": [
+    {
+      "id": "ev_1",
+      "order": 1,
+      "year_hint": "Awal Konflik Suksesi",
+      "title": "Gugurnya Pangeran Sekar Seda ing Lepen",
+      "description": "Pangeran Sekar (ayah Arya Penangsang) dibunuh oleh suruhan Sunan Prawata dalam perebutan tahta Demak, memicu dendam keluarga Jipang.",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)"
+    },
+    {
+      "id": "ev_2",
+      "order": 2,
+      "year_hint": "1549 M",
+      "title": "Wafatnya Sunan Prawata oleh Suruhan Arya Penangsang",
+      "description": "Arya Penangsang dari Jipang membalas dendam dengan mengutus Rangkut untuk membunuh Sunan Prawata beserta istrinya.",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)"
+    },
+    {
+      "id": "ev_3",
+      "order": 3,
+      "year_hint": "1549 M",
+      "title": "Gugurnya Pangeran Hadiri saat Pulang dari Kudus",
+      "description": "Setelah Retna Kencana dan Pangeran Hadiri mengadu kepada Sunan Kudus namun tidak memperoleh keadilan, Pangeran Hadiri dihadang dan gugur di perjalanan pulang menuju Kalinyamat.",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)"
+    },
+    {
+      "id": "ev_4",
+      "order": 4,
+      "year_hint": "Bukit Danaraja",
+      "title": "Pertapaan Danaraja & Sayembara Keadilan",
+      "description": "Retna Kencana melakukan laku prihatin simbolis di Bukit Danaraja dan menjanjikan hadiah bagi siapa pun yang mampu menghentikan kekejaman Arya Penangsang.",
+      "source_tag": "TRADISI",
+      "reference": "Sulistyanto (2019) (S2) & Achmad (2020) (S3)"
+    },
+    {
+      "id": "ev_5",
+      "order": 5,
+      "year_hint": "10 April 1549 / 1550",
+      "title": "Gugurnya Arya Penangsang & Penobatan Ratu Kalinyamat",
+      "description": "Hadiwijaya (Pajang) bersama Ki Ageng Pemanahan, Ki Penjawi, Ki Juru Mrentani, dan Sutawijaya berhasil menaklukkan Arya Penangsang. Retna Kencana kemudian dinobatkan menjadi Ratu Kalinyamat di Jepara.",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)"
+    }
+  ]
+}

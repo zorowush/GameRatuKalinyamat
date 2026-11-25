@@ -1,0 +1,62 @@
+{
+  "challenge_id": "l1_challenge_tapa",
+  "title": "Tantangan 1B: Investigasi 'Sejarah atau Mitos?' (Tapa Wuda di Danaraja)",
+  "instruction": "Pelajari 4 kartu bukti lintas sumber di bawah ini (disajikan secara simbolis & edukatif). Pilih MINIMAL 2 kartu bukti yang mendukung analisis kritis sejarah, lalu tentukan kesimpulan yang paling objektif!",
+  "symbolic_note": "Catatan Visual: Adegan Bukit Danaraja digambarkan secara simbolis (siluet dan kabut) untuk menghormati etika budaya, keislaman, dan tujuan pendidikan.",
+  "source_tag": "TRADISI",
+  "reference": "Bambang Sulistyanto (2019), Puslit Arkenas (S2) & Achmad (2020) (S3)",
+  "evidence_cards": [
+    {
+      "id": "card_babad",
+      "title": "Kartu 1: Ungkapan Babad Tanah Jawi",
+      "source_tag": "TRADISI",
+      "reference": "Babad Tanah Jawi via Sulistyanto (2019) (S2)",
+      "is_supporting": true,
+      "summary": "Babad Tanah Jawi memuat frasa 'tapa wuda asinjang rikma' (bertapa tanpa busana dengan rambut terurai). Dalam tradisi sastra Jawa klasik, ungkapan babad kerap menggunakan bahasa metafora/kiasan dramatis untuk menggambarkan duka mendalam dan sumpah tekad."
+    },
+    {
+      "id": "card_historian",
+      "title": "Kartu 2: Kritik Sejarawan & Arkeolog",
+      "source_tag": "FAKTA",
+      "reference": "Bambang Sulistyanto (2019) (S2) & Hayati dkk. (2000) (S1)",
+      "is_supporting": true,
+      "summary": "Sejarawan dan arkeolog menilai bahwa catatan Portugis sezaman tidak pernah menyinggung kisah literal tanpa busana. Mereka menekankan pentingnya membedakan fakta sejarah dari bumbu mitos/legitimasi politik penulis babad di masa belakangan."
+    },
+    {
+      "id": "card_tasawuf",
+      "title": "Kartu 3: Makna Simbolis Tasawuf & Zuhud",
+      "source_tag": "TRADISI",
+      "reference": "Sri Wintala Achmad (2020) (S3)",
+      "is_supporting": true,
+      "summary": "Dalam perspektif spiritualitas Islam/tasawuf Jawa (zuhud), 'menanggalkan pakaian' bermakna simbolis: menanggalkan kemewahan duniawi, perhiasan kebangsawanan, dan nafsu dunia demi memusatkan diri memohon pertolongan Tuhan."
+    },
+    {
+      "id": "card_culture",
+      "title": "Kartu 4: Etika Budaya Keraton & Keislaman Demak",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+      "is_supporting": true,
+      "summary": "Sebagai putri Sultan Demak yang dibesarkan dalam lingkungan keraton Islam yang menjunjung tinggi kesopanan dan syariat, tafsir harfiah bertapa tanpa busana di ruang terbuka dinilai sangat bertentangan dengan norma budaya Jawa-Islam abad ke-16."
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "conc_literal",
+      "text": "Kisah 'tapa wuda' pasti benar-benar terjadi secara harfiah karena tertulis di Babad, sehingga tidak perlu ditafsirkan lagi.",
+      "is_correct": false,
+      "feedback": "Kurang tepat. Babad adalah karya sastra sejarah yang sarat kiasan dan ditulis jauh setelah peristiwa terjadi. Sejarawan menganjurkan pendekatan kritis lintas sumber."
+    },
+    {
+      "id": "conc_symbolic",
+      "text": "Ungkapan 'tapa wuda asinjang rikma' merupakan perdebatan tafsir sumber: secara kritis lebih dipahami sebagai simbol laku prihatin/zuhud (melepaskan kemewahan & perhiasan duniawi) yang selaras dengan budaya keraton Islam, bukan dimaknai harfiah.",
+      "is_correct": true,
+      "feedback": "Benar sekali! Kesimpulan ini memisahkan tradisi babad dari fakta arkeologis/sejarah secara kritis, sekaligus menghormati konteks tasawuf (zuhud) dan etika keraton Demak-Jepara."
+    },
+    {
+      "id": "conc_erase",
+      "text": "Ratu Kalinyamat hanyalah tokoh mitos fiktif yang tidak pernah benar-benar memerintah Jepara.",
+      "is_correct": false,
+      "feedback": "Keliru. Keberadaan dan kebesaran Ratu Kalinyamat terkonfirmasi kuat oleh sumber primer Portugis (seperti Diego de Couto), peninggalan Masjid Mantingan (1559), dan bukti sejarah Nusantara."
+    }
+  ]
+}

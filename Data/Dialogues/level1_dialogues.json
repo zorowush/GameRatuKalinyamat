@@ -1,0 +1,77 @@
+{
+  "level": 1,
+  "dialogues": {
+    "prolog_keraton": {
+      "lines": [
+        {
+          "speaker": "Ki Wira (Penasihat Keraton)",
+          "role": "Pemandu Sejarah",
+          "portrait": "res://Assets/Characters/portrait_penasihat.png",
+          "source_tag": "FIKSI GAME",
+          "reference": "Narasi pemandu permainan berdasarkan konteks historis Jepara (S1)",
+          "text": "Selamat datang di Bumi Kartini, Jepara! Sejarah mencatat tiga tokoh perempuan agung dari tanah ini: Ratu Shima dari Kalingga, Ratu Kalinyamat di abad ke-16, dan R.A. Kartini di era kebangkitan nasional. Hari ini, kita menelusuri jejak Ratu Kalinyamat."
+        },
+        {
+          "speaker": "Retna Kencana (Ratu Kalinyamat)",
+          "role": "Putri Sultan Trenggana",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "FAKTA",
+          "reference": "Chusnul Hayati dkk. (2000), UNDIP (S1)",
+          "text": "Namaku Retna Kencana, putri Sultan Trenggana dan cucu Raden Patah, pendiri Kesultanan Demak. Sepeninggal ayahanda, awan kelabu konflik suksesi menyelimuti Demak hingga mengorbankan kakandaku Sunan Prawata dan suamiku, Pangeran Hadiri."
+        },
+        {
+          "speaker": "Ki Wira (Penasihat Keraton)",
+          "role": "Pemandu Sejarah",
+          "portrait": "res://Assets/Characters/portrait_penasihat.png",
+          "source_tag": "FIKSI GAME",
+          "reference": "Alur misi Level 1 (S1, S2, S3)",
+          "text": "Kumpulkan 3 gulungan arsip sejarah di sekitar arena, lalu selesaikan dua tugas penting: (1) susun urutan kronologi konflik Demak di Meja Kronologi, dan (2) teliti bukti 'Sejarah atau Mitos?' terkait laku tapa di Bukit Danaraja.",
+          "choices": [
+            {
+              "text": "Mengapa kita perlu membedakan label FAKTA dan TRADISI?",
+              "flag": "asked_labels",
+              "reply": "Karena sejarawan membedakan catatan sejarah terverifikasi (FAKTA) dari kisah babad atau cerita tutur rakyat (TRADISI). Dengan begitu, kita belajar sejarah secara kritis dan adil!"
+            },
+            {
+              "text": "Baik, saya siap menyelidiki arsip Demak dan Danaraja.",
+              "flag": "ready_l1",
+              "reply": "Bagus! Periksa setiap gulungan arsip (+5 poin) dan selesaikan kedua meja tantangan sebelum menuju Gerbang Penobatan 1549."
+            }
+          ]
+        }
+      ]
+    },
+    "danaraja_briefing": {
+      "lines": [
+        {
+          "speaker": "Retna Kencana (Ratu Kalinyamat)",
+          "role": "Di Bukit Danaraja (Simbolis)",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "TRADISI",
+          "reference": "Bambang Sulistyanto (2019), Puslit Arkenas (S2) & Achmad (2020) (S3)",
+          "text": "Di puncak kabut Danaraja, aku mengasingkan diri dari kemewahan duniawi untuk memohon keadilan atas wafatnya Pangeran Hadiri. Kelak berbagai babad menuliskan kisah ini dengan bahasa kiasan yang memicu perdebatan para sejarawan."
+        }
+      ]
+    },
+    "penobatan_1549": {
+      "lines": [
+        {
+          "speaker": "Ki Wira (Penasihat Keraton)",
+          "role": "Pemandu Sejarah",
+          "portrait": "res://Assets/Characters/portrait_penasihat.png",
+          "source_tag": "FAKTA",
+          "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+          "text": "Setelah gugurnya Arya Penangsang dalam sayembara yang melibatkan Hadiwijaya, Ki Ageng Pemanahan, Ki Penjawi, Ki Juru Mrentani, dan Sutawijaya, Retna Kencana resmi dinobatkan sebagai penguasa Jepara dengan gelar Ratu Kalinyamat!"
+        },
+        {
+          "speaker": "Ratu Kalinyamat",
+          "role": "Penguasa Jepara (1549–1579)",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "FAKTA",
+          "reference": "Candrasengkala 'Trus Karya Tataning Bumi' (10 April 1549, S1); sumber lain mencatat 1550 (S3)",
+          "text": "Tanggal 10 April 1549 — ditandai candrasengkala 'Trus Karya Tataning Bumi' (sebagian sumber mencatat 1550) — aku mengemban amanah memimpin Jepara hingga 1579. Mari kita bangun kejayaan maritim Jepara!"
+        }
+      ]
+    }
+  }
+}
