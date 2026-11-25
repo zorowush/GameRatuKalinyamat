@@ -62,9 +62,14 @@ func _on_verify_pressed() -> void:
 
 	if is_correct:
 		_solved = true
-		GameManager.add_challenge_score("l1_tapa_solved", true)
+		var gained := GameManager.add_challenge_score("l1_tapa_solved", true)
 		AudioManager.play_sfx("correct")
-		_feedback_label.text = "[color=#56E38B][b]✓ ANALISIS TEPAT (+10 Poin)![/b][/color] " + fb
+		var pts_note := "+%d Poin" % gained if gained > 0 else "Skor sudah tercatat"
+		_feedback_label.text = "[color=#56E38B][b]✓ ANALISIS TEPAT (%s)![/b][/color] " % pts_note + fb
+		for cid in _evidence_checks.keys():
+			(_evidence_checks[cid] as CheckBox).disabled = true
+		for btn in _conclusion_buttons:
+			btn.disabled = true
 		_verify_btn.visible = false
 		_finish_btn.visible = true
 	else:
@@ -156,6 +161,7 @@ func _build_ui() -> void:
 
 			var cb := CheckBox.new()
 			cb.text = str(c.get("title", ""))
+			cb.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			cb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			cb.add_theme_font_size_override("font_size", 14)
 			cb.add_theme_color_override("font_color", AssetLoader.COLOR_GOLD)
@@ -179,6 +185,7 @@ func _build_ui() -> void:
 
 			var ref := Label.new()
 			ref.text = "Sumber: " + str(c.get("reference", ""))
+			ref.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			ref.add_theme_font_size_override("font_size", 11)
 			ref.add_theme_color_override("font_color", AssetLoader.COLOR_CREAM_DARK)
 			cv.add_child(ref)

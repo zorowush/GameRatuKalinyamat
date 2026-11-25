@@ -24,6 +24,7 @@ var total_score: int = 0
 var unlocked_level: int = 1
 var completed_levels: Array[int] = []
 var completed_missions: Dictionary = {}
+var completed_mission_steps: Dictionary = {}
 var scored_challenges: Dictionary = {}
 var found_archives: Dictionary = {}
 var badges: Array[String] = []
@@ -124,21 +125,27 @@ func complete_level(level_num: int) -> void:
 
 
 func record_quiz_result(correct_count: int, total_count: int) -> Dictionary:
-	quiz_correct = clampi(correct_count, 0, maxi(1, total_count))
-	quiz_total = maxi(1, total_count)
-	quiz_percentage = (float(quiz_correct) / float(quiz_total)) * 100.0
+	var attempt_total := maxi(1, total_count)
+	var attempt_correct := clampi(correct_count, 0, attempt_total)
+	var attempt_pct := (float(attempt_correct) / float(attempt_total)) * 100.0
+
+	if not quiz_completed or attempt_pct >= quiz_percentage:
+		quiz_correct = attempt_correct
+		quiz_total = attempt_total
+		quiz_percentage = attempt_pct
 	quiz_completed = true
 
 	var earned_badge := false
-	if quiz_percentage >= QUIZ_PASS_PERCENTAGE:
+	if attempt_pct >= QUIZ_PASS_PERCENTAGE:
 		earned_badge = award_badge(BADGE_LEVEL_3)
 
 	save_game()
 	return {
-		"correct": quiz_correct,
-		"total": quiz_total,
-		"percentage": quiz_percentage,
-		"passed": quiz_percentage >= QUIZ_PASS_PERCENTAGE,
+		"correct": attempt_correct,
+		"total": attempt_total,
+		"percentage": attempt_pct,
+		"best_percentage": quiz_percentage,
+		"passed": attempt_pct >= QUIZ_PASS_PERCENTAGE,
 		"earned_badge": earned_badge,
 	}
 
@@ -154,7 +161,13 @@ func is_level_completed(level_num: int) -> bool:
 
 
 func has_save_progress() -> bool:
-	return total_score > 0 or unlocked_level > 1 or not found_archives.is_empty() or not completed_levels.is_empty()
+	return (
+		total_score > 0
+		or unlocked_level > 1
+		or not found_archives.is_empty()
+		or not completed_levels.is_empty()
+		or not completed_mission_steps.is_empty()
+	)
 
 
 func get_next_playable_level_scene() -> String:
@@ -174,6 +187,7 @@ func to_dict() -> Dictionary:
 		"unlocked_level": unlocked_level,
 		"completed_levels": completed_levels,
 		"completed_missions": completed_missions,
+		"completed_mission_steps": completed_mission_steps,
 		"scored_challenges": scored_challenges,
 		"found_archives": found_archives,
 		"badges": badges,
@@ -199,6 +213,9 @@ func from_dict(data: Dictionary) -> void:
 
 	var raw_missions: Variant = data.get("completed_missions", {})
 	completed_missions = raw_missions.duplicate(true) if raw_missions is Dictionary else {}
+
+	var raw_steps: Variant = data.get("completed_mission_steps", {})
+	completed_mission_steps = raw_steps.duplicate(true) if raw_steps is Dictionary else {}
 
 	var raw_challenges: Variant = data.get("scored_challenges", {})
 	scored_challenges = raw_challenges.duplicate(true) if raw_challenges is Dictionary else {}
@@ -259,6 +276,7 @@ func reset_progress() -> void:
 	unlocked_level = 1
 	completed_levels.clear()
 	completed_missions.clear()
+	completed_mission_steps.clear()
 	scored_challenges.clear()
 	found_archives.clear()
 	badges.clear()

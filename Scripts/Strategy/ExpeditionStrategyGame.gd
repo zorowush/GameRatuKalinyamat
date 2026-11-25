@@ -65,6 +65,7 @@ func _show_scenario() -> void:
 	_tag_panel.add_theme_stylebox_override("panel", AssetLoader.create_badge_style(tag))
 
 	for c in _options_box.get_children():
+		_options_box.remove_child(c)
 		c.queue_free()
 
 	var options: Array = sc.get("options", [])
@@ -92,9 +93,10 @@ func _on_scenario_option(opt_idx: int) -> void:
 
 	if bool(chosen.get("is_correct", false)):
 		_answered = true
-		GameManager.add_challenge_score(step_id, true)
+		var gained := GameManager.add_challenge_score(step_id, true)
 		AudioManager.play_sfx("correct")
-		_feedback_label.text = "[color=#56E38B][b]✓ KEPUTUSAN STRATEGIS TEPAT (+10 Poin)![/b][/color] " + str(chosen.get("feedback", ""))
+		var pts_note := "+%d Poin" % gained if gained > 0 else "Skor sudah tercatat"
+		_feedback_label.text = "[color=#56E38B][b]✓ KEPUTUSAN STRATEGIS TEPAT (%s)![/b][/color] " % pts_note + str(chosen.get("feedback", ""))
 		for child in _options_box.get_children():
 			if child is Button:
 				child.disabled = true
@@ -128,6 +130,7 @@ func _show_reflection_phase() -> void:
 	_tag_panel.add_theme_stylebox_override("panel", AssetLoader.create_badge_style(tag))
 
 	for c in _options_box.get_children():
+		_options_box.remove_child(c)
 		c.queue_free()
 	_reflection_checks.clear()
 
@@ -170,9 +173,12 @@ func _on_action_pressed() -> void:
 	var ref_data: Dictionary = _data.get("reflection", {})
 	if all_correct:
 		_answered = true
-		GameManager.add_challenge_score("l3_exp_reflection", true)
+		var gained := GameManager.add_challenge_score("l3_exp_reflection", true)
 		AudioManager.play_sfx("correct")
-		_feedback_label.text = "[color=#56E38B][b]✓ REFLEKSI OBJEKTIF TEPAT (+10 Poin)![/b][/color] " + str(ref_data.get("summary", ""))
+		for fid in _reflection_checks.keys():
+			(_reflection_checks[fid]["box"] as CheckBox).disabled = true
+		var pts_note := "+%d Poin" % gained if gained > 0 else "Skor sudah tercatat"
+		_feedback_label.text = "[color=#56E38B][b]✓ REFLEKSI OBJEKTIF TEPAT (%s)![/b][/color] " % pts_note + str(ref_data.get("summary", ""))
 		_action_btn.text = "Selesaikan Tantangan 3A ▶"
 	else:
 		GameManager.add_challenge_score("l3_exp_reflection", false)

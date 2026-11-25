@@ -89,7 +89,7 @@
   ],
   "reflection": {
     "title": "Refleksi Objektif: Mengapa Ekspedisi Malaka 1551 & 1574 Gagal Secara Militer?",
-    "prompt": "Hasil sejarah TIDAK diubah: kedua ekspedisi Jepara ke Malaka belum berhasil merebut benteng Portugis. Centang SEMUA 4 faktor historis penyebab kegagalan militer yang benar, lalu tekan 'Selesaikan Refleksi'!",
+    "prompt": "Hasil sejarah TIDAK diubah: kedua ekspedisi Jepara ke Malaka belum berhasil merebut benteng Portugis. Centang SEMUA 4 faktor historis penyebab kegagalan militer yang benar, lalu tekan 'Periksa Refleksi ✓'!",
     "source_tag": "FAKTA",
     "reference": "Analisis historiografi Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
     "factors": [

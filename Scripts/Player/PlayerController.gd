@@ -92,14 +92,19 @@ func _build_visual() -> void:
 
 	_sprite = Sprite2D.new()
 	_sprite.name = "Sprite2D"
-	_sprite.texture = AssetLoader.load_texture_or_placeholder(
+	var player_tex := AssetLoader.load_texture_or_placeholder(
 		"res://Assets/Characters/player_ratu.png",
 		Vector2i(64, 64),
 		AssetLoader.COLOR_TERRACOTTA,
 		AssetLoader.COLOR_GOLD,
 		"player"
 	)
-	_sprite.scale = Vector2(0.92, 0.92)
+	_sprite.texture = player_tex
+	var tex_size := player_tex.get_size()
+	if tex_size.x > 0.0 and tex_size.y > 0.0:
+		var target_px := 60.0
+		var factor := target_px / maxf(tex_size.x, tex_size.y)
+		_sprite.scale = Vector2(factor, factor)
 	add_child(_sprite)
 
 	var name_lbl := Label.new()

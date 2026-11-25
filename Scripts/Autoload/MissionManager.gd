@@ -8,11 +8,20 @@ const MISSIONS_PATH := "res://Data/Missions/missions.json"
 
 var _missions_data: Dictionary = {}
 var active_level: int = 0
-var _completed_steps: Dictionary = {}
 
 
 func _ready() -> void:
 	reload_missions()
+	GameManager.progress_reset.connect(_on_progress_reset)
+
+
+func _exit_tree() -> void:
+	if GameManager.progress_reset.is_connected(_on_progress_reset):
+		GameManager.progress_reset.disconnect(_on_progress_reset)
+
+
+func _on_progress_reset() -> void:
+	missions_updated.emit(active_level, get_active_objective_text())
 
 
 func reload_missions() -> void:
@@ -44,17 +53,19 @@ func get_level_steps(level_num: int) -> Array:
 func complete_step(step_id: String, award_main_mission_score: bool = false) -> void:
 	if step_id.is_empty():
 		return
-	var is_new := not _completed_steps.has(step_id)
-	_completed_steps[step_id] = true
+	var is_new := not GameManager.completed_mission_steps.has(step_id)
+	GameManager.completed_mission_steps[step_id] = true
 	if award_main_mission_score:
 		GameManager.add_mission_score(step_id)
+	elif is_new:
+		GameManager.save_game()
 	if is_new:
 		step_completed.emit(step_id)
 	missions_updated.emit(active_level, get_active_objective_text())
 
 
 func is_step_completed(step_id: String) -> bool:
-	return _completed_steps.has(step_id)
+	return GameManager.completed_mission_steps.has(step_id)
 
 
 func are_required_steps_completed(step_ids: Array) -> bool:
@@ -77,5 +88,5 @@ func get_active_objective_text() -> String:
 
 
 func reset_runtime_steps() -> void:
-	_completed_steps.clear()
+	GameManager.completed_mission_steps.clear()
 	missions_updated.emit(active_level, get_active_objective_text())

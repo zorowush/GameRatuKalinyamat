@@ -62,9 +62,10 @@ func _on_port_chosen(port_name: String) -> void:
 
 	if port_name == correct_port:
 		_turn_answered = true
-		GameManager.add_challenge_score(step_id, true)
+		var gained := GameManager.add_challenge_score(step_id, true)
 		AudioManager.play_sfx("correct")
-		_feedback_label.text = "[color=#56E38B][b]✓ TEPAT (+10 Poin)![/b][/color] " + str(turn.get("feedback_correct", ""))
+		var pts_note := "+%d Poin" % gained if gained > 0 else "Skor sudah tercatat"
+		_feedback_label.text = "[color=#56E38B][b]✓ TEPAT (%s)![/b][/color] " % pts_note + str(turn.get("feedback_correct", ""))
 		_set_port_buttons_disabled(true)
 		_next_btn.visible = true
 		_next_btn.text = "Selesai & Simpan Hasil ✓" if _turn_idx == _turns.size() - 1 else "Giliran Berikutnya ▶"

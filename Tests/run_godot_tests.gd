@@ -12,20 +12,25 @@ var _failures: Array[String] = []
 
 func _ready() -> void:
 	print("=== GODOT HEADLESS TEST SUITE: JEJAK SANG RATU ===")
+	# Isolate all test writes away from player's real user://save_data.json
+	GameManager.save_path_override = TEST_SAVE_PATH
+
+	_test_input_map_actions()
 	_test_game_manager_scoring_and_edge_cases()
 	_test_game_manager_persistence_and_reset()
-	_test_mission_manager()
+	_test_mission_manager_persistence_and_reset()
 	_test_asset_loader_and_fallbacks()
 	_test_audio_manager()
 	_test_dialogue_manager_edge_cases()
 	_test_instantiate_all_scenes()
-	_test_minigame_interactions()
+	_test_pause_layering_and_interaction_lock()
+	_test_all_six_minigames()
 
-	# Clean up temporary save override & test file
+	# Clean up temporary test save WITHOUT ever overwriting real user://save_data.json
+	GameManager.reset_progress()
 	if FileAccess.file_exists(TEST_SAVE_PATH):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE_PATH))
 	GameManager.save_path_override = ""
-	GameManager.reset_progress()
 
 	print("=== SUMMARY: %d PASSED, %d FAILED ===" % [_passed, _failed])
 	await get_tree().process_frame
@@ -47,9 +52,35 @@ func _assert(cond: bool, msg: String) -> void:
 		print("  [FAIL] " + msg)
 
 
+func _test_input_map_actions() -> void:
+	print("[1/10] Testing InputMap keyboard actions (WASD/Arrows/E/ESC/Enter)...")
+	var checks := [
+		["move_up", KEY_W],
+		["move_up", KEY_UP],
+		["move_down", KEY_S],
+		["move_down", KEY_DOWN],
+		["move_left", KEY_A],
+		["move_left", KEY_LEFT],
+		["move_right", KEY_D],
+		["move_right", KEY_RIGHT],
+		["interact", KEY_E],
+		["pause", KEY_ESCAPE],
+		["confirm", KEY_ENTER],
+		["cancel", KEY_ESCAPE],
+	]
+	for pair in checks:
+		var action_name: String = pair[0]
+		var key_code: Key = pair[1]
+		_assert(InputMap.has_action(action_name), "InputMap must define action '%s'" % action_name)
+		var ev := InputEventKey.new()
+		ev.device = 0
+		ev.physical_keycode = key_code
+		ev.pressed = true
+		_assert(InputMap.event_is_action(ev, action_name), "Device-0 key %d must match action '%s'" % [key_code, action_name])
+
+
 func _test_game_manager_scoring_and_edge_cases() -> void:
-	print("[1/8] Testing GameManager scoring, badges, unlock boundaries & edge cases...")
-	GameManager.save_path_override = TEST_SAVE_PATH
+	print("[2/10] Testing GameManager scoring, badges, unlock boundaries & quiz high-water mark...")
 	GameManager.reset_progress()
 
 	_assert(GameManager.total_score == 0, "Initial score must be 0")
@@ -97,10 +128,14 @@ func _test_game_manager_scoring_and_edge_cases() -> void:
 	var res_pass := GameManager.record_quiz_result(7, 10)
 	_assert(res_pass["passed"] == true and GameManager.has_badge(GameManager.BADGE_LEVEL_3), "7/10 (70%) must award De Kranige Dame")
 
+	# Lower replay score must NOT overwrite best saved quiz score (high-water mark)
+	var res_replay_low := GameManager.record_quiz_result(4, 10)
+	_assert(res_replay_low["percentage"] == 40.0, "Replay dict returns current attempt percentage (40%)")
+	_assert(GameManager.quiz_correct == 7 and GameManager.quiz_percentage == 70.0, "Saved quiz_percentage retains best score (70%)")
+
 
 func _test_game_manager_persistence_and_reset() -> void:
-	print("[2/8] Testing Save/Load JSON persistence and corrupt file resilience...")
-	GameManager.save_path_override = TEST_SAVE_PATH
+	print("[3/10] Testing Save/Load JSON persistence and corrupt file resilience...")
 	var save_err := GameManager.save_game()
 	_assert(save_err == OK, "save_game() to test path must succeed")
 
@@ -127,22 +162,33 @@ func _test_game_manager_persistence_and_reset() -> void:
 	_assert(GameManager.total_score == 0 and GameManager.unlocked_level == 1 and GameManager.badges.is_empty(), "reset_progress clears state")
 
 
-func _test_mission_manager() -> void:
-	print("[3/8] Testing MissionManager across levels 1-3...")
-	MissionManager.reset_runtime_steps()
+func _test_mission_manager_persistence_and_reset() -> void:
+	print("[4/10] Testing MissionManager across levels 1-3, mid-level persistence & auto-reset...")
+	GameManager.reset_progress()
 	for lv in [1, 2, 3]:
 		MissionManager.start_level_missions(lv)
 		var steps := MissionManager.get_level_steps(lv)
 		_assert(steps.size() == 4, "Level %d must have 4 mission steps" % lv)
 		_assert(not MissionManager.get_active_objective_text().is_empty(), "Level %d active objective must be non-empty" % lv)
+
 	MissionManager.complete_step("l1_intro", false)
+	MissionManager.complete_step("l1_challenge_chronology", false)
 	_assert(MissionManager.is_step_completed("l1_intro"), "Completed step must be tracked")
-	_assert(not MissionManager.are_required_steps_completed(["l1_intro", "l1_challenge_chronology"]), "Partial required steps must return false")
-	MissionManager.reset_runtime_steps()
+	_assert(not MissionManager.are_required_steps_completed(["l1_challenge_chronology", "l1_challenge_tapa"]), "Partial required steps must return false")
+
+	# Verify mid-level step persists across save/load
+	GameManager.completed_mission_steps.clear()
+	_assert(not MissionManager.is_step_completed("l1_challenge_chronology"), "Cleared in-memory steps before reload")
+	_assert(GameManager.load_game() == OK, "Reload save with mid-level mission steps")
+	_assert(MissionManager.is_step_completed("l1_challenge_chronology"), "Mid-level mission step must persist across save/load")
+
+	# Verify GameManager.reset_progress() automatically clears MissionManager state!
+	GameManager.reset_progress()
+	_assert(not MissionManager.is_step_completed("l1_challenge_chronology"), "GameManager.reset_progress must automatically clear MissionManager steps")
 
 
 func _test_asset_loader_and_fallbacks() -> void:
-	print("[4/8] Testing AssetLoader JSON loading, fallback textures & tag styles...")
+	print("[5/10] Testing AssetLoader JSON loading, fallback textures & tag styles...")
 	var tex := AssetLoader.load_texture_or_placeholder("res://Assets/NonExistent/test.png", Vector2i(64, 64), AssetLoader.COLOR_TERRACOTTA, AssetLoader.COLOR_GOLD, "ship")
 	_assert(tex != null and tex.get_width() == 64 and tex.get_height() == 64, "Fallback procedural texture must be 64x64")
 	var bad_json: Variant = AssetLoader.load_json_file("res://Data/does_not_exist.json")
@@ -153,7 +199,7 @@ func _test_asset_loader_and_fallbacks() -> void:
 
 
 func _test_audio_manager() -> void:
-	print("[5/8] Testing AudioManager mute toggle & safe playback...")
+	print("[6/10] Testing AudioManager mute toggle & safe playback...")
 	var initial_muted := AudioManager.is_muted()
 	AudioManager.toggle_mute()
 	_assert(AudioManager.is_muted() != initial_muted, "toggle_mute flips state")
@@ -165,17 +211,40 @@ func _test_audio_manager() -> void:
 
 
 func _test_dialogue_manager_edge_cases() -> void:
-	print("[6/8] Testing DialogueManager valid & invalid dialogue IDs...")
+	print("[7/10] Testing DialogueManager valid/invalid IDs, choices & silent cancel...")
 	var bad := DialogueManager.start_dialogue_from_file("res://Data/Dialogues/level1_dialogues.json", "unknown_id")
 	_assert(bad == false and not DialogueManager.is_dialogue_active(), "Unknown dialogue_id must safely return false")
-	var ok := DialogueManager.start_dialogue_from_file("res://Data/Dialogues/level1_dialogues.json", "prolog_keraton")
+
+	# Silent cancel (used by SceneManager) must NOT emit dialogue_finished
+	var finished_fired := [false]
+	var cb := func(_id: String, _flags: Array): finished_fired[0] = true
+	DialogueManager.dialogue_finished.connect(cb)
+
+	var ok := DialogueManager.start_dialogue_from_file("res://Data/Dialogues/level1_dialogues.json", "penobatan_1549")
 	_assert(ok == true and DialogueManager.is_dialogue_active(), "Valid dialogue starts cleanly")
-	DialogueManager.close_dialogue()
-	_assert(not DialogueManager.is_dialogue_active(), "close_dialogue resets active flag")
+	DialogueManager.close_dialogue(false)
+	_assert(not DialogueManager.is_dialogue_active(), "close_dialogue(false) resets active flag")
+	_assert(finished_fired[0] == false, "close_dialogue(false) must NOT emit dialogue_finished")
+
+	# Normal completion with choice flag
+	var captured_flags := []
+	var cb_flags := func(_id: String, flags: Array): captured_flags.assign(flags)
+	DialogueManager.dialogue_finished.connect(cb_flags)
+	DialogueManager.start_dialogue_from_file("res://Data/Dialogues/level1_dialogues.json", "prolog_keraton")
+	DialogueManager.call("_on_next_pressed") # line 1 -> 2
+	DialogueManager.call("_on_next_pressed") # line 2 -> 3 (choices)
+	DialogueManager.call("_on_choice_selected", "asked_labels", "Test reply")
+	_assert(DialogueManager.get("_next_button").text == "Selesai ✓", "Final line after choice reply must show 'Selesai ✓'")
+	DialogueManager.call("_on_next_pressed") # finish
+	_assert(not DialogueManager.is_dialogue_active(), "Dialogue closes after final next")
+	_assert(finished_fired[0] == true and captured_flags.has("asked_labels"), "Normal dialogue finish emits signal & chosen flags")
+
+	DialogueManager.dialogue_finished.disconnect(cb)
+	DialogueManager.dialogue_finished.disconnect(cb_flags)
 
 
 func _test_instantiate_all_scenes() -> void:
-	print("[7/8] Instantiating & entering SceneTree for ALL 18 playable/UI scenes...")
+	print("[8/10] Instantiating & entering SceneTree for ALL 18 playable/UI scenes...")
 	var scene_paths := [
 		"res://Scenes/Main/SplashScreen.tscn",
 		"res://Scenes/Main/MainMenu.tscn",
@@ -210,35 +279,147 @@ func _test_instantiate_all_scenes() -> void:
 				inst.free()
 
 
-func _test_minigame_interactions() -> void:
-	print("[8/8] Testing live challenge controllers (Chronology, Commenda Trade, Heritage Quiz)...")
-	GameManager.save_path_override = TEST_SAVE_PATH
+func _test_pause_layering_and_interaction_lock() -> void:
+	print("[9/10] Testing HUD ModalLayer above ChallengeLayer & interaction lock guard...")
+	GameManager.reset_progress()
+	var lv1 := (load("res://Scenes/Levels/Level1/Level1.tscn") as PackedScene).instantiate()
+	add_child(lv1)
+
+	var hud_node: CanvasLayer = lv1.get("hud")
+	var challenge_layer: CanvasLayer = lv1.get("_challenge_layer")
+	var modal_layer := hud_node.get_node_or_null("ModalLayer") as CanvasLayer
+	_assert(modal_layer != null, "GameplayHUD must have dedicated ModalLayer")
+	_assert(modal_layer.layer > challenge_layer.layer, "HUD ModalLayer (%d) must render ABOVE ChallengeLayer (%d)" % [modal_layer.layer, challenge_layer.layer])
+	_assert(modal_layer.layer > 60, "HUD ModalLayer must also render above DialogueLayer (60)")
+
+	# Open a challenge and confirm interaction lock blocks triggering another spot
+	lv1.call("_handle_spot_interacted", "challenge_chronology")
+	_assert(lv1.call("is_interaction_locked") == true, "Opening challenge must lock arena interactions")
+	lv1.call("_handle_spot_interacted", "l1_arc_silsilah")
+	_assert(not GameManager.has_archive("l1_arc_silsilah"), "Archive spot must NOT trigger while challenge is open")
+
+	# Toggle pause while challenge is open and unpause cleanly
+	hud_node.call("_toggle_pause")
+	_assert(get_tree().paused == true and hud_node.call("is_any_overlay_open") == true, "Pause activates cleanly over challenge")
+	hud_node.call("_toggle_pause")
+	_assert(get_tree().paused == false, "Unpause resumes cleanly")
+
+	remove_child(lv1)
+	lv1.free()
+
+
+func _test_all_six_minigames() -> void:
+	print("[10/10] Testing ALL 6 live mini-game state machines...")
 	GameManager.reset_progress()
 
-	# 1. ChronologyPuzzle: scrambled initial order fails check (0 pts), sorted order succeeds (+10 pts)
+	# 1. ChronologyPuzzle (1A)
 	var chrono := (load("res://Scenes/Challenges/ChronologyPuzzle.tscn") as PackedScene).instantiate()
 	add_child(chrono)
 	chrono.call("_on_check_pressed")
-	_assert(GameManager.total_score == 0, "Scrambled chronology check must award 0 points")
-	# Sort cards into expected 1..5 order and verify
+	_assert(GameManager.total_score == 0, "1A: Scrambled chronology check awards 0")
 	var raw_events: Array = chrono.get("_data").get("events", [])
 	chrono.set("_current_order", raw_events.duplicate())
 	chrono.call("_on_check_pressed")
-	_assert(GameManager.total_score == 10, "Correctly ordered chronology must award +10 points")
+	_assert(GameManager.total_score == 10, "1A: Sorted chronology awards +10")
 	remove_child(chrono)
 	chrono.free()
 
-	# 2. CommendaTradeGame: wrong port awards 0, correct port awards +10
+	# 2. TapaInvestigation (1B)
+	var tapa := (load("res://Scenes/Challenges/TapaInvestigation.tscn") as PackedScene).instantiate()
+	add_child(tapa)
+	tapa.call("_select_conclusion", 1) # correct conclusion, 0 cards checked
+	tapa.call("_on_verify_pressed")
+	_assert(GameManager.total_score == 10 and not bool(tapa.get("_solved")), "1B: <2 evidence cards must reject verification")
+	var ev_checks: Dictionary = tapa.get("_evidence_checks")
+	var keys := ev_checks.keys()
+	(ev_checks[keys[0]] as CheckBox).button_pressed = true
+	(ev_checks[keys[1]] as CheckBox).button_pressed = true
+	tapa.call("_select_conclusion", 0) # wrong conclusion
+	tapa.call("_on_verify_pressed")
+	_assert(GameManager.total_score == 10 and not bool(tapa.get("_solved")), "1B: Wrong conclusion awards 0")
+	tapa.call("_select_conclusion", 1) # right symbolic conclusion
+	tapa.call("_on_verify_pressed")
+	_assert(GameManager.total_score == 20 and bool(tapa.get("_solved")), "1B: >=2 cards + symbolic conclusion awards +10")
+	remove_child(tapa)
+	tapa.free()
+
+	# 3. CommendaTradeGame (2A)
 	var trade := (load("res://Scenes/Challenges/CommendaTradeGame.tscn") as PackedScene).instantiate()
 	add_child(trade)
 	trade.call("_on_port_chosen", "Makassar") # turn 0 correct is Malaka
-	_assert(GameManager.total_score == 10, "Wrong trade port must award 0 points")
+	_assert(GameManager.total_score == 20, "2A: Wrong trade port awards 0")
 	trade.call("_on_port_chosen", "Malaka")
-	_assert(GameManager.total_score == 20, "Correct trade port must award +10 points")
+	_assert(GameManager.total_score == 30, "2A: Correct trade port awards +10")
 	remove_child(trade)
 	trade.free()
 
-	# 3. HeritageQuizGame: answer 7/10 correctly -> awards De Kranige Dame
+	# 4. DiplomacyGame (2B) — all 3 envoys (Johor, Hitu, Aceh)
+	var dip := (load("res://Scenes/Challenges/DiplomacyGame.tscn") as PackedScene).instantiate()
+	add_child(dip)
+	var dip_done := [false]
+	dip.connect("challenge_completed", func(s: bool): dip_done[0] = s)
+	var dip_missions: Array = dip.get("_missions")
+	for mi in range(dip_missions.size()):
+		var opts: Array = dip_missions[mi].get("options", [])
+		var wrong_i := -1
+		var right_i := -1
+		for oi in range(opts.size()):
+			if bool(opts[oi].get("is_correct", false)):
+				right_i = oi
+			elif wrong_i == -1:
+				wrong_i = oi
+		var score_before := GameManager.total_score
+		dip.call("_on_option_chosen", wrong_i)
+		_assert(GameManager.total_score == score_before, "2B mission %d: wrong envoy reply awards 0" % mi)
+		dip.call("_on_option_chosen", right_i)
+		_assert(GameManager.total_score == score_before + 10, "2B mission %d: right envoy reply awards +10" % mi)
+		dip.call("_on_next_pressed")
+	_assert(dip_done[0] == true, "2B: Completing all 3 envoys emits challenge_completed(true)")
+	remove_child(dip)
+	dip.free()
+
+	# 5. ExpeditionStrategyGame (3A) — spirit depletion, retry recovery, 4 scenarios + reflection phase
+	var exp := (load("res://Scenes/Challenges/ExpeditionStrategyGame.tscn") as PackedScene).instantiate()
+	add_child(exp)
+	var exp_done := [false]
+	exp.connect("challenge_completed", func(s: bool): exp_done[0] = s)
+	# Deplete 3 Armada Spirit on scenario 0 (option 0 is wrong)
+	exp.call("_on_scenario_option", 0)
+	exp.call("_on_scenario_option", 0)
+	exp.call("_on_scenario_option", 0)
+	_assert(int(exp.get("_spirit")) == 0 and bool(exp.get("_retry_btn").visible), "3A: 3 wrong choices deplete spirit & show retry")
+	exp.call("_on_retry_pressed")
+	_assert(int(exp.get("_spirit")) == 3 and not bool(exp.get("_retry_btn").visible), "3A: Retry restores spirit to 3")
+	# Answer all 4 scenarios correctly
+	var exp_scenarios: Array = exp.get("_scenarios")
+	for si in range(exp_scenarios.size()):
+		var opts: Array = exp_scenarios[si].get("options", [])
+		var right_i := 0
+		for oi in range(opts.size()):
+			if bool(opts[oi].get("is_correct", false)):
+				right_i = oi
+				break
+		exp.call("_on_scenario_option", right_i)
+		exp.call("_on_action_pressed")
+	_assert(bool(exp.get("_in_reflection")) == true, "3A: Finishing 4 scenarios enters reflection phase")
+	# Check wrong combination (including false factor) -> 0 pts
+	var ref_checks: Dictionary = exp.get("_reflection_checks")
+	for fid in ref_checks.keys():
+		(ref_checks[fid]["box"] as CheckBox).button_pressed = true
+	var score_before_ref := GameManager.total_score
+	exp.call("_on_action_pressed")
+	_assert(GameManager.total_score == score_before_ref and not bool(exp.get("_answered")), "3A: Checking false reflection factor awards 0")
+	# Check exact 4 true factors only -> +10 pts
+	for fid in ref_checks.keys():
+		(ref_checks[fid]["box"] as CheckBox).button_pressed = bool(ref_checks[fid]["is_true"])
+	exp.call("_on_action_pressed")
+	_assert(GameManager.total_score == score_before_ref + 10 and bool(exp.get("_answered")), "3A: Checking exact 4 true factors awards +10")
+	exp.call("_on_action_pressed") # emit challenge_completed
+	_assert(exp_done[0] == true, "3A: Reflection finish emits challenge_completed(true)")
+	remove_child(exp)
+	exp.free()
+
+	# 6. HeritageQuizGame (3B) — 7/10 awards De Kranige Dame, replay does not duplicate points or lower best %
 	var quiz := (load("res://Scenes/Challenges/HeritageQuizGame.tscn") as PackedScene).instantiate()
 	add_child(quiz)
 	quiz.call("_start_quiz")
@@ -249,7 +430,8 @@ func _test_minigame_interactions() -> void:
 		var pick := cidx if i < 7 else (cidx + 1) % 4
 		quiz.call("_on_answer_pressed", pick)
 		quiz.call("_on_next_question")
-	_assert(GameManager.quiz_correct == 7 and GameManager.quiz_percentage == 70.0, "Quiz should record 7/10 (70%)")
-	_assert(GameManager.has_badge(GameManager.BADGE_LEVEL_3), "70% live quiz completion must award De Kranige Dame")
+	_assert(GameManager.quiz_correct == 7 and GameManager.quiz_percentage == 70.0, "3B: Quiz records 7/10 (70%)")
+	_assert(GameManager.has_badge(GameManager.BADGE_LEVEL_3), "3B: 70% live quiz completion awards De Kranige Dame")
+	_assert(not bool(quiz.get("_q_tag_panel").visible), "3B: Results screen hides previous question source tag")
 	remove_child(quiz)
 	quiz.free()

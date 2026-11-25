@@ -27,6 +27,16 @@ func _ready() -> void:
 	_build_fallback_sfx()
 
 
+func _exit_tree() -> void:
+	if _bgm_player != null:
+		_bgm_player.stop()
+		_bgm_player.stream = null
+	if _sfx_player != null:
+		_sfx_player.stop()
+		_sfx_player.stream = null
+	_synth_sfx.clear()
+
+
 func unlock_web_audio() -> void:
 	_web_audio_unlocked = true
 	if not _current_bgm_name.is_empty() and not _bgm_player.playing and not _muted:
@@ -47,9 +57,11 @@ func play_bgm(track_name: String) -> void:
 		return
 	if _bgm_player.stream == stream and _bgm_player.playing:
 		return
+	_bgm_player.stop()
 	_bgm_player.stream = stream
 	_apply_volumes()
-	_bgm_player.play()
+	if AudioServer.get_driver_name() != "Dummy":
+		_bgm_player.play()
 
 
 func stop_bgm() -> void:
@@ -75,9 +87,11 @@ func play_sfx(sfx_name: String) -> void:
 	if stream == null:
 		return
 
+	_sfx_player.stop()
 	_sfx_player.stream = stream
 	_apply_volumes()
-	_sfx_player.play()
+	if AudioServer.get_driver_name() != "Dummy":
+		_sfx_player.play()
 
 
 func set_muted(muted: bool) -> void:

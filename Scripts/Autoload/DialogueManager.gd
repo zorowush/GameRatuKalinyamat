@@ -56,6 +56,8 @@ func start_dialogue_from_file(json_path: String, dialogue_id: String) -> bool:
 func start_dialogue_lines(dialogue_id: String, lines: Array) -> bool:
 	if lines.is_empty():
 		return false
+	if _is_active:
+		close_dialogue(false)
 	_current_dialogue_id = dialogue_id
 	_lines = lines
 	_current_index = 0
@@ -67,7 +69,7 @@ func start_dialogue_lines(dialogue_id: String, lines: Array) -> bool:
 	return true
 
 
-func close_dialogue() -> void:
+func close_dialogue(emit_finished: bool = true) -> void:
 	if not _is_active:
 		return
 	var finished_id := _current_dialogue_id
@@ -76,7 +78,8 @@ func close_dialogue() -> void:
 	_root.visible = false
 	_lines = []
 	_current_dialogue_id = ""
-	dialogue_finished.emit(finished_id, flags_copy)
+	if emit_finished:
+		dialogue_finished.emit(finished_id, flags_copy)
 
 
 func _show_current_line() -> void:
@@ -112,6 +115,7 @@ func _show_current_line() -> void:
 	)
 
 	for child in _choices_box.get_children():
+		_choices_box.remove_child(child)
 		child.queue_free()
 
 	var choices: Variant = line.get("choices", [])
@@ -141,10 +145,11 @@ func _on_choice_selected(flag: String, reply: String) -> void:
 	if not reply.is_empty():
 		_body_label.text = reply
 		for child in _choices_box.get_children():
+			_choices_box.remove_child(child)
 			child.queue_free()
 		_choices_box.visible = false
 		_next_button.visible = true
-		_next_button.text = "Lanjut ▶"
+		_next_button.text = "Selesai ✓" if _current_index == _lines.size() - 1 else "Lanjut ▶"
 	else:
 		_advance_line()
 
@@ -160,7 +165,7 @@ func _advance_line() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not _is_active:
+	if not _is_active or get_tree().paused:
 		return
 	if event.is_action_pressed("confirm") or event.is_action_pressed("interact"):
 		if _next_button.visible:
@@ -261,6 +266,8 @@ func _build_overlay_ui() -> void:
 	_ref_label.add_theme_font_size_override("font_size", 13)
 	_ref_label.add_theme_color_override("font_color", AssetLoader.COLOR_CREAM_DARK)
 	_ref_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_ref_label.clip_text = true
+	_ref_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	footer.add_child(_ref_label)
 
 	_progress_label = Label.new()

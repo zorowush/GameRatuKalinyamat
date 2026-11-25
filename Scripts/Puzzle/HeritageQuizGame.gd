@@ -22,7 +22,6 @@ var _q_text_label: Label
 var _q_options_box: VBoxContainer
 var _q_feedback_label: RichTextLabel
 var _q_next_btn: Button
-var _q_result_summary: RichTextLabel
 
 
 func _ready() -> void:
@@ -55,9 +54,11 @@ func _show_question() -> void:
 
 	var tag := str(q.get("source_tag", "FAKTA")).to_upper()
 	_q_tag_label.text = tag
+	_q_tag_panel.visible = true
 	_q_tag_panel.add_theme_stylebox_override("panel", AssetLoader.create_badge_style(tag))
 
 	for c in _q_options_box.get_children():
+		_q_options_box.remove_child(c)
 		c.queue_free()
 
 	var options: Array = q.get("options", [])
@@ -97,9 +98,10 @@ func _on_answer_pressed(opt_idx: int) -> void:
 
 	if opt_idx == correct_idx:
 		_correct_count += 1
-		GameManager.add_challenge_score(step_id, true)
+		var gained := GameManager.add_challenge_score(step_id, true)
 		AudioManager.play_sfx("correct")
-		_q_feedback_label.text = "[color=#56E38B][b]✓ BENAR (+10 Poin)![/b][/color] %s [color=#E2D0B1](Sumber: %s)[/color]" % [explanation, reference]
+		var pts_note := "+%d Poin" % gained if gained > 0 else "Skor sudah tercatat"
+		_q_feedback_label.text = "[color=#56E38B][b]✓ BENAR (%s)![/b][/color] %s [color=#E2D0B1](Sumber: %s)[/color]" % [pts_note, explanation, reference]
 	else:
 		GameManager.add_challenge_score(step_id, false)
 		AudioManager.play_sfx("wrong")
@@ -121,8 +123,10 @@ func _finish_quiz() -> void:
 	var passed: bool = bool(result["passed"])
 
 	for c in _q_options_box.get_children():
+		_q_options_box.remove_child(c)
 		c.queue_free()
 
+	_q_tag_panel.visible = false
 	_q_progress_label.text = "HASIL EVALUASI AKHIR SEJARAH"
 	_q_text_label.text = "Skor Kuis Anda: %d / %d (%.0f%%)" % [_correct_count, _questions.size(), pct]
 

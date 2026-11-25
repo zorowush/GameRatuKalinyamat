@@ -39,6 +39,9 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
+	if _is_paused and is_inside_tree():
+		get_tree().paused = false
+		_is_paused = false
 	if GameManager.score_changed.is_connected(_on_score_changed):
 		GameManager.score_changed.disconnect(_on_score_changed)
 	if GameManager.archive_found.is_connected(_on_archive_found):
@@ -157,6 +160,7 @@ func _on_open_archives_pressed() -> void:
 
 func _populate_archive_list() -> void:
 	for child in _archive_list_vbox.get_children():
+		_archive_list_vbox.remove_child(child)
 		child.queue_free()
 
 	if GameManager.found_archives.is_empty():
@@ -181,6 +185,7 @@ func _populate_archive_list() -> void:
 
 		var t := Label.new()
 		t.text = str(entry.get("title", aid))
+		t.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		t.add_theme_font_size_override("font_size", 17)
 		t.add_theme_color_override("font_color", AssetLoader.COLOR_GOLD)
 		t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -204,6 +209,7 @@ func _populate_archive_list() -> void:
 
 		var ref := Label.new()
 		ref.text = "Sumber: " + str(entry.get("reference", "-"))
+		ref.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		ref.add_theme_font_size_override("font_size", 12)
 		ref.add_theme_color_override("font_color", AssetLoader.COLOR_CREAM_DARK)
 		cv.add_child(ref)
@@ -302,8 +308,22 @@ func _build_hud() -> void:
 	_toast_label.add_theme_color_override("font_color", AssetLoader.COLOR_GOLD)
 	_toast_panel.add_child(_toast_label)
 
+	# Modal Layer di atas ChallengeLayer (45) & DialogueLayer (60) agar Pause/Arsip tidak pernah tersembunyi di belakang mini-game
+	var modal_layer := CanvasLayer.new()
+	modal_layer.name = "ModalLayer"
+	modal_layer.layer = 70
+	modal_layer.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(modal_layer)
+
+	var modal_root := Control.new()
+	modal_root.name = "ModalRoot"
+	modal_root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	modal_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	modal_root.theme = AssetLoader.build_theme()
+	modal_layer.add_child(modal_root)
+
 	# Pause Overlay
-	_pause_overlay = _make_modal_backdrop(root)
+	_pause_overlay = _make_modal_backdrop(modal_root)
 	var pause_card := PanelContainer.new()
 	pause_card.custom_minimum_size = Vector2(400, 320)
 	pause_card.add_theme_stylebox_override("panel", AssetLoader.create_panel_style(AssetLoader.COLOR_PANEL_DARK, AssetLoader.COLOR_GOLD, 14, 3, 24))
@@ -350,7 +370,7 @@ func _build_hud() -> void:
 	pv.add_child(menu_btn)
 
 	# Archive List Overlay
-	_archive_overlay = _make_modal_backdrop(root)
+	_archive_overlay = _make_modal_backdrop(modal_root)
 	var arch_card := PanelContainer.new()
 	arch_card.custom_minimum_size = Vector2(780, 520)
 	arch_card.add_theme_stylebox_override("panel", AssetLoader.create_panel_style(AssetLoader.COLOR_PANEL_DARK, AssetLoader.COLOR_GOLD, 14, 3, 20))
@@ -386,7 +406,7 @@ func _build_hud() -> void:
 	ascroll.add_child(_archive_list_vbox)
 
 	# Single Archive Discovery Popup
-	_archive_popup_overlay = _make_modal_backdrop(root)
+	_archive_popup_overlay = _make_modal_backdrop(modal_root)
 	var ap_card := PanelContainer.new()
 	ap_card.custom_minimum_size = Vector2(680, 390)
 	ap_card.add_theme_stylebox_override("panel", AssetLoader.create_panel_style(AssetLoader.COLOR_PANEL_DARK, AssetLoader.COLOR_GOLD, 14, 3, 24))
@@ -400,6 +420,7 @@ func _build_hud() -> void:
 	apv.add_child(aph)
 
 	_archive_popup_title = Label.new()
+	_archive_popup_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_archive_popup_title.add_theme_font_size_override("font_size", 22)
 	_archive_popup_title.add_theme_color_override("font_color", AssetLoader.COLOR_GOLD)
 	_archive_popup_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -422,6 +443,7 @@ func _build_hud() -> void:
 	apv.add_child(apf)
 
 	_archive_popup_ref = Label.new()
+	_archive_popup_ref.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_archive_popup_ref.add_theme_font_size_override("font_size", 13)
 	_archive_popup_ref.add_theme_color_override("font_color", AssetLoader.COLOR_CREAM_DARK)
 	_archive_popup_ref.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -436,7 +458,7 @@ func _build_hud() -> void:
 	apf.add_child(ap_ok)
 
 	# Quick Help Overlay inside Pause
-	_help_overlay = _make_modal_backdrop(root)
+	_help_overlay = _make_modal_backdrop(modal_root)
 	var hc := PanelContainer.new()
 	hc.custom_minimum_size = Vector2(560, 340)
 	hc.add_theme_stylebox_override("panel", AssetLoader.create_panel_style(AssetLoader.COLOR_PANEL_DARK, AssetLoader.COLOR_GOLD, 14, 3, 22))

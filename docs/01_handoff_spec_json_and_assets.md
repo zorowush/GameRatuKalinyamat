@@ -19,7 +19,7 @@ Setiap dialog, catatan arsip, kartu bukti, dan soal wajib memiliki salah satu da
 | :--- | :--- |
 | `Data/Missions/missions.json` | Daftar misi per level (`levels -> "1"/"2"/"3" -> steps[]`). |
 | `Data/Historical_Data/references.json` | Daftar pustaka S1–S4 dan informasi tim untuk layar *Tentang & Sumber*. |
-| `Data/Dialogues/level1_dialogues.json` | Naskah dialog Level 1 (`prolog_jepara`, `keraton_demak`, `danaraja_simbolis`, `penobatan_1549`). |
+| `Data/Dialogues/level1_dialogues.json` | Naskah dialog Level 1 (`prolog_keraton`, `danaraja_briefing`, `penobatan_1549`). |
 | `Data/Historical_Data/level1_archives.json` | 3 Arsip sejarah Level 1 (Silsilah Retna Kencana, Asal Pangeran Hadiri, Candrasengkala 1549). |
 | `Data/Historical_Data/level1_chronology.json` | 5 kartu urutan konflik Demak untuk Tantangan 1A. |
 | `Data/Historical_Data/level1_tapa_investigation.json` | 4 kartu bukti + 3 opsi kesimpulan untuk Tantangan 1B (*Tapa Wuda* simbolis). |

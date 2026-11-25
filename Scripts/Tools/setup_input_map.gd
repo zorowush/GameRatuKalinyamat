@@ -44,6 +44,7 @@ func set_action(action_name: String, keys: Array) -> void:
 
 	for key_code in keys:
 		var event := InputEventKey.new()
+		event.device = -1
 		event.physical_keycode = key_code
 		events.append(event)
 

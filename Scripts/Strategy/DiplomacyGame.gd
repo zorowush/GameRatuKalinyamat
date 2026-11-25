@@ -47,6 +47,7 @@ func _show_mission() -> void:
 	_tag_panel.add_theme_stylebox_override("panel", AssetLoader.create_badge_style(tag))
 
 	for c in _options_box.get_children():
+		_options_box.remove_child(c)
 		c.queue_free()
 
 	var options: Array = m.get("options", [])
@@ -74,9 +75,10 @@ func _on_option_chosen(opt_idx: int) -> void:
 
 	if bool(chosen.get("is_correct", false)):
 		_answered = true
-		GameManager.add_challenge_score(step_id, true)
+		var gained := GameManager.add_challenge_score(step_id, true)
 		AudioManager.play_sfx("correct")
-		_feedback_label.text = "[color=#56E38B][b]✓ KEPUTUSAN DIPLOMATIK TEPAT (+10 Poin)![/b][/color] " + str(chosen.get("feedback", ""))
+		var pts_note := "+%d Poin" % gained if gained > 0 else "Skor sudah tercatat"
+		_feedback_label.text = "[color=#56E38B][b]✓ KEPUTUSAN DIPLOMATIK TEPAT (%s)![/b][/color] " % pts_note + str(chosen.get("feedback", ""))
 		for child in _options_box.get_children():
 			if child is Button:
 				child.disabled = true
@@ -140,9 +142,24 @@ func _build_ui() -> void:
 	card.add_theme_stylebox_override("panel", AssetLoader.create_panel_style(AssetLoader.COLOR_DARK_BROWN, AssetLoader.COLOR_SEA_TEAL, 10, 2, 16))
 	vbox.add_child(card)
 
+	var card_row := HBoxContainer.new()
+	card_row.add_theme_constant_override("separation", 16)
+	card.add_child(card_row)
+
+	var envoy_portrait := TextureRect.new()
+	envoy_portrait.custom_minimum_size = Vector2(92, 92)
+	envoy_portrait.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	envoy_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	envoy_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	envoy_portrait.texture = AssetLoader.load_texture_or_placeholder(
+		"res://Assets/Characters/portrait_utusan.png", Vector2i(96, 96), AssetLoader.COLOR_SEA_TEAL, AssetLoader.COLOR_GOLD, "ship"
+	)
+	card_row.add_child(envoy_portrait)
+
 	var cv := VBoxContainer.new()
+	cv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	cv.add_theme_constant_override("separation", 8)
-	card.add_child(cv)
+	card_row.add_child(cv)
 
 	var ch := HBoxContainer.new()
 	cv.add_child(ch)

@@ -59,9 +59,10 @@ func _on_check_pressed() -> void:
 
 	if wrong_positions.is_empty():
 		_solved = true
-		GameManager.add_challenge_score("l1_chronology_solved", true)
+		var gained := GameManager.add_challenge_score("l1_chronology_solved", true)
 		AudioManager.play_sfx("correct")
-		_feedback_label.text = "[color=#56E38B][b]✓ BENAR (+10 Poin)![/b][/color] " + str(_data.get("success_summary", ""))
+		var pts_note := "+%d Poin" % gained if gained > 0 else "Skor sudah tercatat"
+		_feedback_label.text = "[color=#56E38B][b]✓ BENAR (%s)![/b][/color] " % pts_note + str(_data.get("success_summary", ""))
 		_check_btn.visible = false
 		_finish_btn.visible = true
 		_render_cards(true)
@@ -78,6 +79,7 @@ func _on_check_pressed() -> void:
 
 func _render_cards(show_verified: bool = false) -> void:
 	for c in _list_box.get_children():
+		_list_box.remove_child(c)
 		c.queue_free()
 
 	for i in range(_current_order.size()):
@@ -109,6 +111,7 @@ func _render_cards(show_verified: bool = false) -> void:
 
 		var t := Label.new()
 		t.text = str(ev.get("title", ""))
+		t.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		t.add_theme_font_size_override("font_size", 16)
 		t.add_theme_color_override("font_color", AssetLoader.COLOR_CREAM)
 		t.size_flags_horizontal = Control.SIZE_EXPAND_FILL

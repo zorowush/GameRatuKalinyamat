@@ -53,15 +53,19 @@ func init_arena(p_level_num: int, p_title: String, p_bg_path: String, p_floor: C
 	queue_redraw()
 
 
-func _process(_delta: float) -> void:
-	if player == null:
-		return
-	var locked: bool = (
+func is_interaction_locked() -> bool:
+	return (
 		DialogueManager.is_dialogue_active()
 		or (hud != null and bool(hud.call("is_any_overlay_open")))
 		or _active_challenge != null
 		or (_complete_overlay != null and _complete_overlay.visible)
 	)
+
+
+func _process(_delta: float) -> void:
+	if player == null:
+		return
+	var locked: bool = is_interaction_locked()
 	player.movement_locked = locked
 
 	for spot_id in spots.keys():
@@ -72,10 +76,10 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if player == null or player.movement_locked:
+	if player == null or is_interaction_locked():
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var click_pos: Vector2 = event.position
+		var click_pos: Vector2 = get_global_mouse_position()
 		if click_pos.y > 76.0:
 			player.set_move_target(click_pos)
 
@@ -84,10 +88,16 @@ func spawn_spot(spot_id: String, title: String, kind: String, pos: Vector2, asse
 	var spot := SPOT_SCENE.instantiate()
 	spot.position = pos
 	spot.setup(spot_id, title, kind, asset_path)
-	spot.interacted.connect(_on_spot_interacted)
+	spot.interacted.connect(_handle_spot_interacted)
 	add_child(spot)
 	spots[spot_id] = spot
 	return spot
+
+
+func _handle_spot_interacted(spot_id: String) -> void:
+	if is_interaction_locked():
+		return
+	_on_spot_interacted(spot_id)
 
 
 func mark_spot_completed(spot_id: String) -> void:
@@ -240,11 +250,16 @@ func _on_spot_interacted(_spot_id: String) -> void:
 
 func _setup_background() -> void:
 	if not bg_asset_path.is_empty() and ResourceLoader.exists(bg_asset_path):
-		var sprite := Sprite2D.new()
-		sprite.texture = load(bg_asset_path)
-		sprite.position = Vector2(640, 360)
-		sprite.z_index = -10
-		add_child(sprite)
+		var tex := load(bg_asset_path) as Texture2D
+		if tex != null:
+			var sprite := Sprite2D.new()
+			sprite.texture = tex
+			sprite.position = Vector2(640, 360)
+			var tex_size := tex.get_size()
+			if tex_size.x > 0.0 and tex_size.y > 0.0:
+				sprite.scale = Vector2(1280.0 / tex_size.x, 720.0 / tex_size.y)
+			sprite.z_index = -10
+			add_child(sprite)
 
 
 func _draw() -> void:

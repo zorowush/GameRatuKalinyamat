@@ -37,7 +37,7 @@ func change_scene(scene_path: String, instant: bool = false) -> void:
 		push_error("[SceneManager] Scene tidak ditemukan: %s" % scene_path)
 		return
 
-	DialogueManager.close_dialogue()
+	DialogueManager.close_dialogue(false)
 	get_tree().paused = false
 
 	if instant or DisplayServer.get_name() == "headless":
