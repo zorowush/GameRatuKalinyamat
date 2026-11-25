@@ -1,0 +1,49 @@
+{
+  "game_title": "Jejak Sang Ratu: Kejayaan Jepara",
+  "course": "Mata Kuliah Game Programming — Prodi Rekayasa Perangkat Lunak (Semester 5)",
+  "lecturer": "A. Faiq Abror",
+  "team": [
+    {
+      "name": "Chika Anggraini",
+      "role": "Game Designer & Project Manager",
+      "scope": "Konsep game, riset sejarah, GDD, storyboard, flowchart, naskah JSON, koordinasi tim."
+    },
+    {
+      "name": "Ahmad Zuhri Fahrudin",
+      "role": "Game Programmer & Developer",
+      "scope": "Setup Godot 4, arsitektur sistem, gameplay 3 level, mini-game, sistem skor & save, pengujian otomatis, build Web & Windows."
+    },
+    {
+      "name": "Diva Anggi Wulan Maulida",
+      "role": "UI/UX Designer, Asset Creator & Tester",
+      "scope": "Desain UI/UX tema Relief Mantingan, aset visual & audio, pengujian manual 6 skenario & log bug."
+    }
+  ],
+  "historical_policy": "Setiap narasi di dalam permainan dipisahkan secara eksplisit menggunakan label FAKTA (berbasis sumber multi-referensi), TRADISI (babad, cerita rakyat, atau tradisi tutur), dan FIKSI GAME (tokoh pembantu/pemandu). Adegan pertapaan Danaraja disajikan secara simbolis (siluet & kabut, tanpa ketelanjangan), dan hasil Ekspedisi Malaka 1551 & 1574 disajikan objektif sesuai catatan sejarah.",
+  "references": [
+    {
+      "code": "S1",
+      "citation": "Chusnul Hayati, 'Ratu Kalinyamat: Ratu Jepara yang Pemberani' (UNDIP) & Hayati dkk. (2000), 'Peranan Ratu Kalinyamat di Jepara pada Abad XVI'.",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000), UNDIP"
+    },
+    {
+      "code": "S2",
+      "citation": "Bambang Sulistyanto (2019), 'Ratu Kalinyamat: Sejarah atau Mitos?' (Pusat Penelitian Arkeologi Nasional / Puslit Arkenas).",
+      "source_tag": "FAKTA",
+      "reference": "Sulistyanto (2019), Puslit Arkenas"
+    },
+    {
+      "code": "S3",
+      "citation": "Sri Wintala Achmad (2020), 'Melacak Gerakan Perlawanan dan Laku Spiritualitas Ratu Kalinyamat' (Yogyakarta: Araska).",
+      "source_tag": "FAKTA",
+      "reference": "Achmad (2020), Araska"
+    },
+    {
+      "code": "S4",
+      "citation": "Ngatawi El-Zastrow (2020) FIN UNUSIA & Beni Jo (2023) Tirto.id — Dokumentasi penetapan resmi Ratu Kalinyamat sebagai Pahlawan Nasional RI (10 November 2023).",
+      "source_tag": "FAKTA",
+      "reference": "El-Zastrow (2020) & Beni Jo (2023)"
+    }
+  ]
+}

@@ -10,9 +10,19 @@ config_version=5
 
 [application]
 
-config/name="GameRatuKalinyamat"
+config/name="Jejak Sang Ratu: Kejayaan Jepara"
+run/main_scene="res://Scenes/Main/SplashScreen.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AssetLoader="*res://Scripts/Autoload/AssetLoader.gd"
+GameManager="*res://Scripts/Autoload/GameManager.gd"
+AudioManager="*res://Scripts/Autoload/AudioManager.gd"
+MissionManager="*res://Scripts/Autoload/MissionManager.gd"
+DialogueManager="*res://Scripts/Autoload/DialogueManager.gd"
+SceneManager="*res://Scripts/Autoload/SceneManager.gd"
 
 [display]
 

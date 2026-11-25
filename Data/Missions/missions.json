@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "levels": {
+    "1": {
+      "title": "Level 1: Putri dari Demak",
+      "subtitle": "Konflik Demak, Pertapaan Danaraja & Penobatan 1549",
+      "badge": "Penyelidik Sejarah",
+      "scene": "res://Scenes/Levels/Level1/Level1.tscn",
+      "steps": [
+        {
+          "id": "l1_intro",
+          "title": "Bicara dengan Penasihat Keraton untuk mendengarkan Prolog Jepara & Demak.",
+          "required": true
+        },
+        {
+          "id": "l1_challenge_chronology",
+          "title": "Selesaikan Tantangan 1A: Urutkan 5 Peristiwa Kronologi Konflik Demak.",
+          "required": true
+        },
+        {
+          "id": "l1_challenge_tapa",
+          "title": "Selesaikan Tantangan 1B: Investigasi 'Sejarah atau Mitos?' (Tapa Wuda Simbolis).",
+          "required": true
+        },
+        {
+          "id": "l1_complete",
+          "title": "Menuju Gerbang Penobatan 1549 untuk meraih Lencana Penyelidik Sejarah.",
+          "required": true
+        }
+      ]
+    },
+    "2": {
+      "title": "Level 2: Kejayaan Maritim Jepara",
+      "subtitle": "Rainha de Japara, Sistem Commenda, Seni Ukir & Diplomasi Nusantara",
+      "badge": "Ratu Bandar",
+      "scene": "res://Scenes/Levels/Level2/Level2.tscn",
+      "steps": [
+        {
+          "id": "l2_intro",
+          "title": "Temui Syahbandar Jepara di dermaga untuk menerima laporan bandar niaga.",
+          "required": true
+        },
+        {
+          "id": "l2_challenge_trade",
+          "title": "Selesaikan Tantangan 2A: Simulasi Niaga Commenda & Rute Komoditas (6 Giliran).",
+          "required": true
+        },
+        {
+          "id": "l2_challenge_diplomacy",
+          "title": "Selesaikan Tantangan 2B: Simulasi Diplomasi Aliansi (Johor, Hitu, Aceh).",
+          "required": true
+        },
+        {
+          "id": "l2_complete",
+          "title": "Menuju Dermaga Kejayaan untuk meraih Lencana Ratu Bandar.",
+          "required": true
+        }
+      ]
+    },
+    "3": {
+      "title": "Level 3: Armada ke Malaka",
+      "subtitle": "Ekspedisi 1551 & 1574, Galeri Warisan, Evaluasi Akhir & Epilog",
+      "badge": "De Kranige Dame",
+      "scene": "res://Scenes/Levels/Level3/Level3.tscn",
+      "steps": [
+        {
+          "id": "l3_intro",
+          "title": "Temui Kiai Demang Laksamana di Dewan Perang Jepara.",
+          "required": true
+        },
+        {
+          "id": "l3_challenge_expedition",
+          "title": "Selesaikan Tantangan 3A: Strategi & Refleksi Objektif Ekspedisi Malaka 1551 & 1574.",
+          "required": true
+        },
+        {
+          "id": "l3_challenge_quiz",
+          "title": "Selesaikan Tantangan 3B: Tinjau Galeri Warisan & Kerjakan Evaluasi 10 Soal.",
+          "required": true
+        },
+        {
+          "id": "l3_complete",
+          "title": "Kunjungi Monumen Epilog Mantingan untuk menyelesaikan perjalanan sejarah.",
+          "required": true
+        }
+      ]
+    }
+  }
+}
