@@ -1,0 +1,171 @@
+{
+  "challenge_id": "l3_challenge_quiz",
+  "gallery_title": "Galeri Warisan Ratu Kalinyamat",
+  "quiz_title": "Evaluasi Akhir Sejarah (10 Soal)",
+  "pass_percentage": 70,
+  "heritage_items": [
+    {
+      "id": "her_mantingan",
+      "title": "1. Masjid Mantingan (1559 M / 1481 Saka)",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+      "description": "Didirikan pada masa Ratu Kalinyamat dengan candrasengkala 'Rupa Brahmana Warna Sari' yang menandai tahun 1481 Saka (1559 M). Dindingnya dihiasi relief batu putih bernilai seni tinggi dan menjadi tempat peristirahatan terakhir Ratu Kalinyamat (wafat 1579) serta Pangeran Hadiri."
+    },
+    {
+      "id": "her_ukir",
+      "title": "2. Seni Ukir Jepara",
+      "source_tag": "TRADISI",
+      "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+      "description": "Berakar dari tradisi relief Masjid Mantingan yang dikaitkan dengan Sungging Badar Duwung (Tjie Wie Gwan). Perpaduan motif sulur flora, daun, dan stilasi ornamen Jawa–Tiongkok–Islam berkembang menjadi identitas kerajinan ukir kayu Jepara yang terkenal hingga mancanegara."
+    },
+    {
+      "id": "her_benteng",
+      "title": "3. Situs Benteng Kalinyamat (±5–6 km)",
+      "source_tag": "FAKTA",
+      "reference": "Bambang Sulistyanto (2019), Puslit Arkenas (S2)",
+      "description": "Kajian arkeologis menemukan jejak struktur bata kuno Benteng Kalinyamat sepanjang sekitar 5–6 km yang melintasi kawasan Robayan, Bakalan, Kriyan, dan Margoyoso di Jepara. Temuan ini menjadi bukti fisik nyata pusat pemerintahan dan pertahanan Kalinyamat pada abad ke-16."
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Siapakah nama asli Ratu Kalinyamat dan dari keluarga kerajaan mana ia berasal?",
+      "options": [
+        "Retna Kencana, putri Sultan Trenggana dan cucu Raden Patah (Kesultanan Demak)",
+        "Ratu Shima, penguasa Kerajaan Kalingga abad ke-7",
+        "Tribhuwana Tunggadewi, putri pendiri Majapahit",
+        "Cut Nyak Dien, bangsawan dari Kesultanan Aceh"
+      ],
+      "correct_index": 0,
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "explanation": "Ratu Kalinyamat bernama asli Retna Kencana, putri Sultan Trenggana (Raja Demak III) dan cucu Raden Patah."
+    },
+    {
+      "id": "q2",
+      "question": "Candrasengkala 'Trus Karya Tataning Bumi' menandai penobatan Ratu Kalinyamat di Jepara pada tanggal...",
+      "options": [
+        "10 November 2023",
+        "10 April 1549 (sumber lain mencatat 1550)",
+        "17 Agustus 1579",
+        "12 Mei 1511"
+      ],
+      "correct_index": 1,
+      "source_tag": "FAKTA",
+      "reference": "Chusnul Hayati, UNDIP (S1) & Achmad (2020) (S3)",
+      "explanation": "10 April 1549 (1471 Saka) ditandai candrasengkala 'Trus Karya Tataning Bumi', sementara sumber lain seperti Sri Wintala Achmad mencatat tahun 1550."
+    },
+    {
+      "id": "q3",
+      "question": "Mengapa sejarawan & arkeolog memandang ungkapan 'tapa wuda asinjang rikma' di Bukit Danaraja secara kritis?",
+      "options": [
+        "Karena Ratu Kalinyamat tidak pernah mengalami konflik keluarga di Demak",
+        "Karena seluruh catatan Portugis menuliskan kisah bertapa tanpa busana secara rinci",
+        "Karena ungkapan babad tersebut lebih tepat dipahami sebagai metafora/simbol zuhud (melepaskan kemewahan duniawi) sesuai budaya keraton Islam, bukan ditafsirkan harfiah",
+        "Karena Bukit Danaraja terletak di Semenanjung Malaka"
+      ],
+      "correct_index": 2,
+      "source_tag": "TRADISI",
+      "reference": "Bambang Sulistyanto (2019) (S2) & Achmad (2020) (S3)",
+      "explanation": "Babad kerap memakai bahasa kiasan; para sejarawan menafsirkannya secara simbolis sebagai laku prihatin/zuhud melepaskan perhiasan dan kemewahan dunia."
+    },
+    {
+      "id": "q4",
+      "question": "Apa makna julukan Portugis dari Diego de Couto: 'Rainha de Japara, senhora poderosa e rica'?",
+      "options": [
+        "Putri Demak yang menguasai jalur sutra Tiongkok",
+        "Ratu Jepara, seorang wanita yang kaya dan sangat berkuasa",
+        "Laksamana laut dari Semenanjung Malaka",
+        "Pemimpin perdagangan lada dari Banten"
+      ],
+      "correct_index": 1,
+      "source_tag": "FAKTA",
+      "reference": "Diego de Couto via Hayati dkk. (2000) (S1)",
+      "explanation": "Diego de Couto mencatat kebesaran Ratu Kalinyamat sebagai 'Rainha de Japara, senhora poderosa e rica' (wanita yang kaya dan sangat berkuasa)."
+    },
+    {
+      "id": "q5",
+      "question": "Empat pelabuhan utama yang menopang kejayaan ekonomi maritim di bawah pengaruh Jepara abad ke-16 adalah...",
+      "options": [
+        "Banten, Sunda Kelapa, Cirebon, dan Indramayu",
+        "Surabaya, Gresik, Tuban, dan Pasuruan",
+        "Makassar, Ternate, Tidore, dan Ambon",
+        "Jepara, Juana, Rembang, dan Lasem"
+      ],
+      "correct_index": 3,
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "explanation": "Empat pelabuhan utama yang memperkuat ekonomi maritim Jepara adalah Jepara, Juana, Rembang, dan Lasem."
+    },
+    {
+      "id": "q6",
+      "question": "Bagaimana cara kerja sistem perdagangan 'commenda' yang berkembang di Jepara pada masa Ratu Kalinyamat?",
+      "options": [
+        "Seluruh perdagangan dilarang menggunakan kapal laut dan hanya lewat jalur darat",
+        "Pedagang wajib menyerahkan seluruh muatan tanpa imbalan kepada Portugis",
+        "Penguasa/pemodal membiayai muatan dan pelayaran nakhoda/pedagang ke berbagai bandar Nusantara dengan sistem bagi hasil",
+        "Pertukaran barang hanya dilakukan di dalam tembok keraton"
+      ],
+      "correct_index": 2,
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "explanation": "Sistem commenda merupakan kerja sama modal antara bangsawan/penguasa dan nakhoda pelayaran jarak jauh dengan pembagian keuntungan."
+    },
+    {
+      "id": "q7",
+      "question": "Tiga kekuatan Nusantara yang tercatat menjalin diplomasi aliansi maritim dengan Jepara melawan dominasi Portugis adalah...",
+      "options": [
+        "Johor (1550), Persekutuan Hitu di Ambon/Maluku (1565), dan Aceh (1573)",
+        "Mataram, Pajang, dan Blambangan",
+        "Sriwijaya, Majapahit, dan Singasari",
+        "Siam, Kamboja, dan Vietnam"
+      ],
+      "correct_index": 0,
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+      "explanation": "Jepara merespons seruan diplomasi Johor (1550), Hitu/Ambon (1565), dan Kesultanan Aceh (1573)."
+    },
+    {
+      "id": "q8",
+      "question": "Siapakah panglima armada Jepara (300 kapal & 15.000 prajurit) pada Ekspedisi Malaka 1574 yang disebut 'Quilidamao' dalam catatan Portugis?",
+      "options": [
+        "Sunan Prawata",
+        "Kiai Demang Laksamana",
+        "Arya Penangsang",
+        "Sungging Badar Duwung"
+      ],
+      "correct_index": 1,
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+      "explanation": "Ekspedisi besar 1574 dipimpin oleh Kiai Demang Laksamana yang dicatat orang Portugis dengan ejaan 'Quilidamao'."
+    },
+    {
+      "id": "q9",
+      "question": "Faktor utama apa yang menyebabkan Ekspedisi Malaka 1551 dan 1574 belum berhasil merebut benteng Portugis secara militer?",
+      "options": [
+        "Jepara hanya mengirim 2 perahu kecil tanpa prajurit",
+        "Ratu Kalinyamat membatalkan seluruh pelayaran sebelum kapal meninggalkan Jepara",
+        "Keunggulan kapal/meriam Portugis, keterlambatan koordinasi sekutu (Aceh sudah mundur 1574), kerentanan logistik (6 kapal direbut), dan badai (1551)",
+        "Portugis tidak memiliki benteng maupun meriam di Malaka"
+      ],
+      "correct_index": 2,
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+      "explanation": "Sejarah mencatat secara objektif bahwa kombinasi keunggulan meriam Portugis, sinkronisasi waktu sekutu, jalur logistik, dan cuaca ekstrem menggagalkan perebutan Malaka."
+    },
+    {
+      "id": "q10",
+      "question": "Kapan Ratu Kalinyamat secara resmi ditetapkan sebagai Pahlawan Nasional Republik Indonesia, dan candrasengkala apa yang terdapat pada Masjid Mantingan (1559 M)?",
+      "options": [
+        "17 Agustus 1945; candrasengkala 'Sirna Ilang Kertaning Bumi'",
+        "21 April 1964; candrasengkala 'Trus Karya Tataning Bumi'",
+        "20 Mei 2008; candrasengkala 'Naga Muluk Tinitihan Janma'",
+        "10 November 2023; candrasengkala 'Rupa Brahmana Warna Sari' (1481 Saka)"
+      ],
+      "correct_index": 3,
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Beni Jo (2023) Tirto.id (S4)",
+      "explanation": "Ratu Kalinyamat ditetapkan sebagai Pahlawan Nasional RI pada 10 November 2023, sedangkan Masjid Mantingan (1559 M / 1481 Saka) bertuliskan candrasengkala 'Rupa Brahmana Warna Sari'."
+    }
+  ]
+}

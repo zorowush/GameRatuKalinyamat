@@ -1,0 +1,53 @@
+{
+  "level": 3,
+  "dialogues": {
+    "dewan_perang": {
+      "lines": [
+        {
+          "speaker": "Kiai Demang Laksamana (Quilidamao)",
+          "role": "Panglima Armada Laut Jepara",
+          "portrait": "res://Assets/Characters/portrait_laksamana.png",
+          "source_tag": "FAKTA",
+          "reference": "Chusnul Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+          "text": "Kanjeng Ratu, kapal-kapal jung kayu jati dari galangan Jepara telah siap berlayar menuju Selat Malaka. Catatan Portugis menyebut namaku Quilidamao — pemimpin armada besar Jepara dalam ekspedisi 1574."
+        },
+        {
+          "speaker": "Ratu Kalinyamat",
+          "role": "Penguasa Maritim Jepara",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "FAKTA",
+          "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+          "text": "Kita menghadapi benteng dan meriam kapal Portugis yang sangat kuat. Dua kali Jepara mengerahkan kekuatan maritim ke Malaka — pada 1551 membantu Johor, dan pada 1574 membantu Aceh. Sejarah tidak hanya mencatat kemenangan, tetapi juga keberanian dan pelajaran dari setiap kegagalan."
+        },
+        {
+          "speaker": "Kiai Demang Laksamana (Quilidamao)",
+          "role": "Panglima Armada Laut Jepara",
+          "portrait": "res://Assets/Characters/portrait_laksamana.png",
+          "source_tag": "FIKSI GAME",
+          "reference": "Alur misi Level 3 (S1, S2, S4)",
+          "text": "Pelajari 3 arsip ekspedisi di pangkalan ini, lalu jalankan dua tantangan penutup: (1) Peta Strategi & Refleksi Ekspedisi Malaka 1551 & 1574, serta (2) Pendopo Galeri Warisan & Evaluasi 10 Soal sebelum menuju Monumen Epilog Mantingan."
+        }
+      ]
+    },
+    "epilog_mantingan": {
+      "lines": [
+        {
+          "speaker": "Narator Sejarah",
+          "role": "Epilog Mantingan & Pengakuan Bangsa",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "FAKTA",
+          "reference": "Hayati dkk. (2000) (S1), El-Zastrow (2020) & Beni Jo (2023) (S4)",
+          "text": "Ratu Kalinyamat wafat pada tahun 1579 dan dimakamkan di kompleks Masjid Mantingan, Jepara. Meski kedua ekspedisi ke Malaka tidak berhasil merebut benteng Portugis, keberaniannya membangun kekuatan ekonomi, budaya ukir, dan armada Nusantara tetap dikenang."
+        },
+        {
+          "speaker": "Narator Sejarah",
+          "role": "Pahlawan Nasional Republik Indonesia",
+          "portrait": "res://Assets/Characters/portrait_ratu.png",
+          "source_tag": "FAKTA",
+          "reference": "Keputusan Presiden RI / Tirto.id — Beni Jo (2023) (S4)",
+          "text": "Atas jasa besarnya dalam sejarah maritim, diplomasi, dan perlawanan terhadap kolonialisme, Pemerintah Republik Indonesia secara resmi menetapkan Ratu Kalinyamat sebagai Pahlawan Nasional Indonesia pada tanggal 10 November 2023."
+        }
+      ]
+    }
+  }
+}

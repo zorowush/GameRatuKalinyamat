@@ -1,0 +1,124 @@
+{
+  "challenge_id": "l3_challenge_expedition",
+  "title": "Tantangan 3A: Strategi & Refleksi Objektif Ekspedisi Malaka (1551 & 1574)",
+  "source_tag": "FAKTA",
+  "reference": "Hayati dkk. (2000) (S1), Sulistyanto (2019) (S2) & Achmad (2020) (S3)",
+  "max_spirit": 3,
+  "scenarios": [
+    {
+      "id": "exp_1551_prep",
+      "era": "Ekspedisi 1551 — Aliansi Johor",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Achmad (2020) (S3)",
+      "situation": "Jepara mengerahkan 40 kapal dari total 200 kapal sekutu Johor dengan sekitar 4.000–5.000 prajurit (sumber lain menyebut ~1.000 prajurit). Benteng A Famosa Portugis sangat kokoh dari sisi laut. Keputusan taktis apa yang paling masuk akal sebelum mendarat?",
+      "options": [
+        {
+          "text": "Menyerbu langsung dinding meriam benteng di siang bolong tanpa berkoordinasi dengan pasukan Johor.",
+          "is_correct": false,
+          "feedback": "Berisiko fatal! Meriam benteng dan kapal galeon Portugis unggul dalam daya tembak jarak jauh bila diserbu tanpa koordinasi."
+        },
+        {
+          "text": "Menggabungkan serangan pendaratan dengan pasukan sekutu Johor sambil mengepung jalur pasokan kota Malaka.",
+          "is_correct": true,
+          "feedback": "Tepat! Koordinasi dengan pasukan sekutu Johor sempat menekan pertahanan luar Malaka, meski kemudian pertempuran berubah berat."
+        },
+        {
+          "text": "Meninggalkan seluruh kapal di tengah laut tanpa penjagaan dan membakar perbekalan sendiri.",
+          "is_correct": false,
+          "feedback": "Keliru! Menjaga kapal dan logistik adalah kunci hidup-mati armada maritim jarak jauh."
+        }
+      ]
+    },
+    {
+      "id": "exp_1551_storm",
+      "era": "Ekspedisi 1551 — Badai di Selat Malaka",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "situation": "Di tengah pengepungan 1551, panglima pasukan gugur dan badai besar menghantam perairan hingga menenggelamkan atau mendamparkan sekitar 20 kapal Jepara. Bagaimana sikap strategis yang bijak dalam kondisi tersebut?",
+      "options": [
+        {
+          "text": "Melakukan penarikan mundur teratur untuk menyelamatkan sisa prajurit dan kapal agar kekuatan Jepara tetap utuh.",
+          "is_correct": true,
+          "feedback": "Tepat! Secara historis, ekspedisi 1551 berakhir dengan kegagalan militer akibat korban gugur dan badai yang merusak 20 kapal; menyelamatkan sisa armada memungkinkan Jepara tetap berjaya dan bangkit kembali."
+        },
+        {
+          "text": "Memaksa sisa kapal rusak berlayar melawan pusat badai menuju tembakan meriam Portugis.",
+          "is_correct": false,
+          "feedback": "Kurang tepat. Memaksakan serangan saat armada porak-poranda oleh badai hanya akan menghabisi seluruh prajurit tanpa peluang menang."
+        }
+      ]
+    },
+    {
+      "id": "exp_1574_arrival",
+      "era": "Ekspedisi 1574 — Armada Besar Kiai Demang Laksamana",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+      "situation": "Pada 1574, Jepara mengirim 300 kapal (termasuk 80 kapal jung besar berkapasitas 400 ton) dan 15.000 prajurit dipimpin Kiai Demang Laksamana (Quilidamao). Namun setibanya di Malaka, armada Aceh ternyata sudah lebih dulu mundur dan 30 kapal Jepara sempat terbakar serangan Portugis. Apa langkah paling realistis untuk menjaga tekanan?",
+      "options": [
+        {
+          "text": "Membangun blokade sungai/pelabuhan Malaka sambil mengamankan kapal logistik dan mengevaluasi pertahanan benteng.",
+          "is_correct": true,
+          "feedback": "Tepat! Secara historis, Kiai Demang Laksamana melakukan blokade selama sekitar 3 bulan untuk memutus pasokan Malaka, meski ancaman terhadap jalur logistik sendiri sangat besar."
+        },
+        {
+          "text": "Langsung menyerahkan 80 kapal jung besar kepada Portugis tanpa perlawanan.",
+          "is_correct": false,
+          "feedback": "Keliru. Armada Jepara tetap berjuang melakukan pengepungan selama 3 bulan sebelum kondisi logistik memaksa penarikan mundur."
+        }
+      ]
+    },
+    {
+      "id": "exp_1574_logistics",
+      "era": "Ekspedisi 1574 — Krisis Logistik setelah 3 Bulan Blokade",
+      "source_tag": "FAKTA",
+      "reference": "Hayati dkk. (2000) (S1)",
+      "situation": "Setelah 3 bulan blokade, Portugis berhasil merebut 6 kapal logistik pengangkut pangan dan perlengkapan armada Jepara. Persediaan prajurit menipis dan perundingan damai tidak mencapai kesepakatan. Apa keputusan historis yang diambil armada?",
+      "options": [
+        {
+          "text": "Mengakhiri pengepungan dan menarik armada kembali ke Jepara karena jalur logistik terputus dan keunggulan meriam Portugis sulit ditembus.",
+          "is_correct": true,
+          "feedback": "Benar secara historis! Ekspedisi 1574 gagal merebut Malaka dan terpaksa mundur setelah 6 kapal logistik direbut Portugis. Namun operasi 300 kapal ini membuktikan besarnya kapasitas maritim Jepara di mata Eropa."
+        },
+        {
+          "text": "Mengklaim Malaka telah jatuh dan menuliskan kemenangan fiktif dalam sejarah.",
+          "is_correct": false,
+          "feedback": "Tidak tepat! Prinsip sejarah yang jujur mengharuskan kita mencatat hasil objektif apa adanya dan memetik pelajaran strategis darinya."
+        }
+      ]
+    }
+  ],
+  "reflection": {
+    "title": "Refleksi Objektif: Mengapa Ekspedisi Malaka 1551 & 1574 Gagal Secara Militer?",
+    "prompt": "Hasil sejarah TIDAK diubah: kedua ekspedisi Jepara ke Malaka belum berhasil merebut benteng Portugis. Centang SEMUA 4 faktor historis penyebab kegagalan militer yang benar, lalu tekan 'Selesaikan Refleksi'!",
+    "source_tag": "FAKTA",
+    "reference": "Analisis historiografi Hayati dkk. (2000) (S1) & Sulistyanto (2019) (S2)",
+    "factors": [
+      {
+        "id": "fac_tech",
+        "text": "Keunggulan teknologi kapal perang (galeon) dan daya tembak meriam serta benteng batu Portugis.",
+        "is_true": true
+      },
+      {
+        "id": "fac_timing",
+        "text": "Kurangnya sinkronisasi koordinasi waktu antar sekutu (pada 1574 armada Jepara tiba setelah Aceh mundur).",
+        "is_true": true
+      },
+      {
+        "id": "fac_logistics",
+        "text": "Kerentanan jalur logistik jarak jauh (6 kapal perbekalan direbut Portugis setelah blokade 3 bulan).",
+        "is_true": true
+      },
+      {
+        "id": "fac_weather",
+        "text": "Faktor alam/cuaca ekstrem (badai 1551 menenggelamkan/mendamparkan sekitar 20 kapal Jepara).",
+        "is_true": true
+      },
+      {
+        "id": "fac_myth",
+        "text": "Karena Jepara tidak memiliki galangan kapal maupun pelaut berpengalaman sama sekali.",
+        "is_true": false
+      }
+    ],
+    "summary": "Analisis luar biasa! Meskipun gagal secara militer karena keunggulan meriam Portugis, koordinasi waktu sekutu, kerentanan logistik, dan badai, keberanian Ratu Kalinyamat mengerahkan hingga 300 kapal dan 15.000 prajurit menunjukkan kedaulatan maritim Nusantara yang disegani."
+  }
+}
