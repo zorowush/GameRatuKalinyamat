@@ -47,33 +47,36 @@ Sistem `AssetLoader` di Godot otomatis memeriksa keberadaan file di `Assets/`. S
 | Emas Aksen | `#D4A24C` | Bingkai, lencana, highlight interaktif, tag `TRADISI` |
 | Cokelat Tua | `#3B2418` | Latar panel gelap, bayangan, teks gelap di atas krem |
 
-### Daftar Target File Aset (`Assets/`)
-| Path File Target | Jenis | Resolusi / Format Rekomendasi | Batas Ukuran |
+### Daftar Target File Aset (`Assets/`) & Status Integrasi
+| Path File Target | Jenis | Resolusi / Format Aktual / Target | Status |
 | :--- | :--- | :--- | :--- |
-| `Assets/Characters/player_ratu.png` | Sprite Karakter Utama | `128x128` PNG transparan | < 150 KB |
-| `Assets/Characters/portrait_ratu.png` | Potret Dialog Ratu Kalinyamat | `256x256` PNG transparan | < 200 KB |
-| `Assets/Characters/portrait_penasihat.png` | Potret Penasihat / Syahbandar | `256x256` PNG transparan | < 200 KB |
-| `Assets/Characters/portrait_sungging.png` | Potret Sungging Badar Duwung | `256x256` PNG transparan | < 200 KB |
-| `Assets/Characters/portrait_laksamana.png` | Potret Kiai Demang Laksamana | `256x256` PNG transparan | < 200 KB |
-| `Assets/Characters/portrait_utusan.png` | Potret Utusan Kerajaan | `256x256` PNG transparan | < 200 KB |
-| `Assets/Environments/bg_menu.png` | Latar Main Menu / Splash | `1280x720` PNG / WebP | < 600 KB |
-| `Assets/Environments/bg_level1.png` | Latar Arena Level 1 (Demak & Danaraja) | `1280x720` PNG | < 600 KB |
-| `Assets/Environments/bg_level2.png` | Latar Arena Level 2 (Pelabuhan Jepara) | `1280x720` PNG | < 600 KB |
-| `Assets/Environments/bg_level3.png` | Latar Arena Level 3 (Pangkalan Armada) | `1280x720` PNG | < 600 KB |
-| `Assets/Objects/icon_archive.png` | Ikon Arsip Gulungan | `96x96` PNG transparan | < 80 KB |
-| `Assets/Objects/icon_challenge.png` | Ikon Meja Tantangan | `96x96` PNG transparan | < 80 KB |
-| `Assets/Objects/icon_gate.png` | Ikon Gerbang/Monumen Akhir Level | `96x96` PNG transparan | < 80 KB |
-| `Assets/UI/badge_penyelidik.png` | Lencana Penyelidik Sejarah | `128x128` PNG transparan | < 100 KB |
-| `Assets/UI/badge_ratu_bandar.png` | Lencana Ratu Bandar | `128x128` PNG transparan | < 100 KB |
-| `Assets/UI/badge_kranige_dame.png` | Lencana De Kranige Dame | `128x128` PNG transparan | < 100 KB |
-| `Assets/Audio/BGM/bgm_menu.ogg` | Musik Latar Menu (Gamelan lembut) | OGG Vorbis, 96–128 kbps, loop | < 1.5 MB |
-| `Assets/Audio/BGM/bgm_level1.ogg` | Musik Latar Level 1 | OGG Vorbis, 96–128 kbps, loop | < 1.5 MB |
-| `Assets/Audio/BGM/bgm_level2.ogg` | Musik Latar Level 2 | OGG Vorbis, 96–128 kbps, loop | < 1.5 MB |
-| `Assets/Audio/BGM/bgm_level3.ogg` | Musik Latar Level 3 | OGG Vorbis, 96–128 kbps, loop | < 1.5 MB |
-| `Assets/Audio/SFX/sfx_click.ogg` | Suara Klik Tombol | OGG / WAV pendek (< 0.3 dtk) | < 50 KB |
-| `Assets/Audio/SFX/sfx_correct.ogg` | Suara Jawaban Benar | OGG / WAV (< 1 dtk) | < 80 KB |
-| `Assets/Audio/SFX/sfx_wrong.ogg` | Suara Jawaban Salah | OGG / WAV (< 1 dtk) | < 80 KB |
-| `Assets/Audio/SFX/sfx_archive.ogg` | Suara Menemukan Arsip | OGG / WAV (< 1 dtk) | < 80 KB |
-| `Assets/Audio/SFX/sfx_badge.ogg` | Suara Raih Lencana / Level Selesai | OGG / WAV (< 2 dtk) | < 150 KB |
+| `Assets/Characters/walk_retna_muda.png` & `walk_ratu.png` | Spritesheet Animasi Jalan 4 Arah Pemain (Lv.1 & Lv.2–3) | `144x192` PNG (3×4 frame `48x48`) | **Sudah Masuk** |
+| `Assets/Characters/player_ratu.png` | Sprite Idle Cadangan Ratu | `48x48` PNG transparan | **Sudah Masuk** |
+| `Assets/Characters/portrait_retna_muda.png` & `portrait_ratu.png` | Potret Dialog Retna Muda (Lv.1) & Ratu Kalinyamat | `144x144` PNG | **Sudah Masuk** |
+| `Assets/Characters/portrait_sultan_trenggana.png` & `walk_sultan_trenggana.png` | Potret & Walk Sheet Sultan Trenggana | `144x144` & `144x192` PNG | **Sudah Masuk** |
+| `Assets/Characters/portrait_pangeran_hadiri.png` & `walk_pangeran_hadiri.png` | Potret & Walk Sheet Pangeran Hadiri | `144x144` & `144x192` PNG | **Sudah Masuk** |
+| `Assets/Characters/portrait_penasihat.png` & `walk_penasihat.png` | Potret & Walk Penasihat/Syahbandar *(sementara pakai aset pedagang)* | `144x144` & `144x192` PNG | **Sudah Masuk** *(opsional revisi khusus Ki Wira)* |
+| `Assets/Characters/portrait_laksamana.png` & `walk_prajurit.png` | Potret & Walk Kiai Demang Laksamana *(sementara pakai aset prajurit)* | `144x144` & `144x192` PNG | **Sudah Masuk** *(opsional revisi khusus Laksamana)* |
+| `Assets/Characters/portrait_utusan.png` & `walk_utusan.png` | Potret & Walk Utusan Kerajaan | `144x144` & `144x192` PNG | **Sudah Masuk** |
+| `Assets/Characters/portrait_sungging.png` | Potret Sungging Badar Duwung (Lv.2) | `144x144` atau `256x256` PNG transparan | **Belum** *(masih placeholder)* |
+| `Assets/Environments/bg_menu.png` | Latar Main Menu / Splash | `1280x720` PNG | **Sudah Masuk** |
+| `Assets/Environments/bg_level1.png` | Latar Arena Scrolling Level 1 (Keraton Demak & Gapura) | `2304x768` PNG (skala `2160x720` di game) | **Sudah Masuk** |
+| `Assets/Environments/bg_level2.png` | Latar Arena Scrolling Level 2 (Pelabuhan Jepara) | `2304x768` PNG (skala `2160x720` di game) | **Sudah Masuk** |
+| `Assets/Environments/bg_level3.png` | Latar Arena Scrolling Level 3 (Pangkalan Armada) | `2304x768` PNG (skala `2160x720` di game) | **Sudah Masuk** |
+| `Assets/Objects/icon_archive.png` | Ikon Arsip Gulungan | `48x48` PNG transparan | **Sudah Masuk** |
+| `Assets/Objects/icon_challenge.png` | Ikon Meja Tantangan | `96x96` PNG transparan | **Sudah Masuk** |
+| `Assets/Objects/icon_gate.png` | Ikon Gerbang/Monumen Akhir Level | `96x96` PNG transparan | **Sudah Masuk** |
+| `Assets/UI/badge_penyelidik.png` | Lencana Penyelidik Sejarah | `128x128` PNG transparan | **Belum** *(masih placeholder)* |
+| `Assets/UI/badge_ratu_bandar.png` | Lencana Ratu Bandar | `128x128` PNG transparan | **Belum** *(masih placeholder)* |
+| `Assets/UI/badge_kranige_dame.png` | Lencana De Kranige Dame | `128x128` PNG transparan | **Belum** *(masih placeholder)* |
+| `Assets/Audio/BGM/bgm_menu.ogg` | Musik Latar Menu (Gamelan lembut) | OGG Vorbis, 96–128 kbps, loop (< 1.5 MB) | **Belum** |
+| `Assets/Audio/BGM/bgm_level1.ogg` | Musik Latar Level 1 | OGG Vorbis, 96–128 kbps, loop (< 1.5 MB) | **Belum** |
+| `Assets/Audio/BGM/bgm_level2.ogg` | Musik Latar Level 2 | OGG Vorbis, 96–128 kbps, loop (< 1.5 MB) | **Belum** |
+| `Assets/Audio/BGM/bgm_level3.ogg` | Musik Latar Level 3 | OGG Vorbis, 96–128 kbps, loop (< 1.5 MB) | **Belum** |
+| `Assets/Audio/SFX/sfx_click.ogg` | Suara Klik Tombol | OGG / WAV pendek (< 0.3 dtk, < 50 KB) | **Belum** *(cadangan sintesis aktif)* |
+| `Assets/Audio/SFX/sfx_correct.ogg` | Suara Jawaban Benar | OGG / WAV (< 1 dtk, < 80 KB) | **Belum** *(cadangan sintesis aktif)* |
+| `Assets/Audio/SFX/sfx_wrong.ogg` | Suara Jawaban Salah | OGG / WAV (< 1 dtk, < 80 KB) | **Belum** *(cadangan sintesis aktif)* |
+| `Assets/Audio/SFX/sfx_archive.ogg` | Suara Menemukan Arsip | OGG / WAV (< 1 dtk, < 80 KB) | **Belum** *(cadangan sintesis aktif)* |
+| `Assets/Audio/SFX/sfx_badge.ogg` | Suara Raih Lencana / Level Selesai | OGG / WAV (< 2 dtk, < 150 KB) | **Belum** *(cadangan sintesis aktif)* |
 
 > **Target Ukuran Build Web (HTML5):** Total folder `Assets/` dijaga di bawah **20 MB** agar ukuran ekspor Web keseluruhan tetap **< 40 MB** dan cepat dibuka dosen melalui browser.

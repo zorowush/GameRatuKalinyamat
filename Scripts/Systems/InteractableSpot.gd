@@ -1,6 +1,7 @@
 extends Node2D
 ## Titik interaktif di arena (NPC, Arsip Sejarah, Tantangan, Gerbang Akhir Level).
 ## Dapat dipicu melalui klik langsung pada ikon maupun menekan tombol E saat pemain dekat.
+## Mendukung pixel-art spritesheet 4 arah (144x192 -> ambil frame idle depan 48x48) dan ikon PNG satuan.
 
 signal interacted(spot_id: String)
 
@@ -52,24 +53,27 @@ func trigger() -> void:
 
 
 func _draw() -> void:
-	var ring_col := AssetLoader.COLOR_GOLD if is_player_near else Color(0.83, 0.64, 0.30, 0.35)
-	var radius := 44.0 if is_player_near else 38.0
+	# Bayangan halus di bawah objek/NPC + cincin sorotan saat pemain dekat
+	draw_circle(Vector2(0, 28), 22.0, Color(0.05, 0.03, 0.02, 0.36))
+	var ring_col := AssetLoader.COLOR_GOLD if is_player_near else Color(0.83, 0.64, 0.30, 0.45)
+	var radius := 40.0 if is_player_near else 34.0
 	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 32, ring_col, 3.0 if is_player_near else 1.5)
 
 
 func _build_visual() -> void:
 	_icon_rect = TextureRect.new()
-	_icon_rect.position = Vector2(-34, -34)
-	_icon_rect.size = Vector2(68, 68)
+	_icon_rect.position = Vector2(-36, -36)
+	_icon_rect.size = Vector2(72, 72)
 	_icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_icon_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_icon_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_icon_rect)
 
 	_title_label = Label.new()
 	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_title_label.position = Vector2(-95, 38)
-	_title_label.size = Vector2(190, 36)
+	_title_label.position = Vector2(-95, 36)
+	_title_label.size = Vector2(190, 38)
 	_title_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_title_label.add_theme_font_size_override("font_size", 13)
 	_title_label.add_theme_color_override("font_color", AssetLoader.COLOR_CREAM)
@@ -134,8 +138,17 @@ func _refresh_visual() -> void:
 			bg_col = AssetLoader.COLOR_SEA_TEAL
 			motif = "crown"
 
-	_icon_rect.texture = AssetLoader.load_texture_or_placeholder(
+	var tex := AssetLoader.load_texture_or_placeholder(
 		asset_path, Vector2i(72, 72), bg_col, AssetLoader.COLOR_GOLD, motif
 	)
+	# Jika tekstur adalah walk spritesheet 144x192 (3x4 frame 48x48), tampilkan frame idle depan (kolom 1, baris 0)
+	if tex != null and tex.get_width() == 144 and tex.get_height() == 192:
+		var atlas := AtlasTexture.new()
+		atlas.atlas = tex
+		atlas.region = Rect2(48, 0, 48, 48)
+		_icon_rect.texture = atlas
+	else:
+		_icon_rect.texture = tex
+
 	_title_label.text = display_title
 	_status_label.visible = is_completed

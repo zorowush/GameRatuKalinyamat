@@ -16,7 +16,9 @@ func _ready() -> void:
 		"res://Assets/Environments/bg_level3.png",
 		Color("#241F29"),
 		AssetLoader.COLOR_TERRACOTTA_DARK,
-		Vector2(210, 385)
+		Vector2(220, 565),
+		Rect2(50, 465, 2060, 195),
+		"res://Assets/Characters/walk_ratu.png"
 	)
 	player.set_character_label("Ratu Kalinyamat")
 	load_archives_from_json(ARCHIVES_PATH)
@@ -41,20 +43,20 @@ func _play_intro_dialogue() -> void:
 
 
 func _spawn_level3_spots() -> void:
-	# NPC Kiai Demang Laksamana (Quilidamao)
-	spawn_spot("npc_laksamana", "Kiai Demang Laksamana\n(Quilidamao)", "npc", Vector2(210, 205), "res://Assets/Characters/portrait_laksamana.png")
+	# NPC Kiai Demang Laksamana (Quilidamao) di dermaga armada 2160x720
+	spawn_spot("npc_laksamana", "Kiai Demang Laksamana\n(Quilidamao)", "npc", Vector2(385, 585), "res://Assets/Characters/walk_prajurit.png")
 
 	# 3 Arsip Sejarah Level 3
-	spawn_spot("l3_arc_1551", "Arsip: Ekspedisi\nMalaka 1551", "archive", Vector2(455, 195), "res://Assets/Objects/icon_archive.png")
-	spawn_spot("l3_arc_1574", "Arsip: Ekspedisi\nMalaka 1574", "archive", Vector2(455, 565), "res://Assets/Objects/icon_archive.png")
-	spawn_spot("l3_arc_pahlawan", "Arsip: Pahlawan\nNasional 2023", "archive", Vector2(845, 565), "res://Assets/Objects/icon_archive.png")
+	spawn_spot("l3_arc_1551", "Arsip: Ekspedisi\nMalaka 1551", "archive", Vector2(660, 560), "res://Assets/Objects/icon_archive.png")
+	spawn_spot("l3_arc_1574", "Arsip: Ekspedisi\nMalaka 1574", "archive", Vector2(940, 575), "res://Assets/Objects/icon_archive.png")
+	spawn_spot("l3_arc_pahlawan", "Arsip: Pahlawan\nNasional 2023", "archive", Vector2(1455, 610), "res://Assets/Objects/icon_archive.png")
 
 	# 2 Tantangan Utama Level 3
-	spawn_spot("challenge_expedition", "Tantangan 3A:\nPeta Strategi Malaka", "challenge", Vector2(665, 250), "res://Assets/Objects/icon_challenge.png")
-	spawn_spot("challenge_quiz", "Tantangan 3B:\nWarisan & Evaluasi", "challenge", Vector2(915, 250), "res://Assets/Objects/icon_challenge.png")
+	spawn_spot("challenge_expedition", "Tantangan 3A:\nPeta Strategi Malaka", "challenge", Vector2(1220, 565), "res://Assets/Objects/icon_challenge.png")
+	spawn_spot("challenge_quiz", "Tantangan 3B:\nWarisan & Evaluasi", "challenge", Vector2(1690, 565), "res://Assets/Objects/icon_challenge.png")
 
 	# Monumen Epilog Mantingan (Tamat Game -> EndingScreen)
-	spawn_spot("gate_epilog", "Monumen Epilog\nMantingan (Tamat)", "gate", Vector2(1110, 385), "res://Assets/Objects/icon_gate.png")
+	spawn_spot("gate_epilog", "Monumen Epilog\nMantingan (Tamat)", "gate", Vector2(1960, 560), "res://Assets/Objects/icon_gate.png")
 
 
 func _sync_completed_visuals() -> void:
@@ -114,6 +116,8 @@ func _try_complete_level3() -> void:
 
 func _draw() -> void:
 	super._draw()
+	if _has_bg_texture:
+		return
 	# Zona Peta Selat Malaka dekoratif
 	draw_rect(Rect2(580, 125, 420, 190), Color(0.11, 0.25, 0.34, 0.42))
 	draw_rect(Rect2(580, 125, 420, 190), AssetLoader.COLOR_GOLD, false, 2.0)

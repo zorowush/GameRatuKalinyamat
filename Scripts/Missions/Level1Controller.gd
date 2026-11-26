@@ -16,7 +16,9 @@ func _ready() -> void:
 		"res://Assets/Environments/bg_level1.png",
 		Color("#352017"),
 		AssetLoader.COLOR_TERRACOTTA,
-		Vector2(210, 385)
+		Vector2(240, 575),
+		Rect2(50, 485, 2060, 190),
+		"res://Assets/Characters/walk_retna_muda.png"
 	)
 	player.set_character_label("Retna Kencana")
 	load_archives_from_json(ARCHIVES_PATH)
@@ -41,20 +43,20 @@ func _play_intro_dialogue() -> void:
 
 
 func _spawn_level1_spots() -> void:
-	# NPC Penasihat Keraton
-	spawn_spot("npc_penasihat", "Ki Wira\n(Penasihat Keraton)", "npc", Vector2(210, 210), "res://Assets/Characters/portrait_penasihat.png")
+	# NPC Penasihat Keraton (halaman depan Pendopo Demak)
+	spawn_spot("npc_penasihat", "Ki Wira\n(Penasihat Keraton)", "npc", Vector2(630, 555), "res://Assets/Characters/walk_penasihat.png")
 
-	# 3 Arsip Sejarah Level 1
-	spawn_spot("l1_arc_silsilah", "Arsip: Silsilah\nRetna Kencana", "archive", Vector2(450, 195), "res://Assets/Objects/icon_archive.png")
-	spawn_spot("l1_arc_hadiri", "Arsip: Versi Asal\nPangeran Hadiri", "archive", Vector2(450, 560), "res://Assets/Objects/icon_archive.png")
-	spawn_spot("l1_arc_sengkalan", "Arsip: Sengkalan\n10 April 1549", "archive", Vector2(840, 565), "res://Assets/Objects/icon_archive.png")
+	# 3 Arsip Sejarah Level 1 (tersebar di jalur halaman Keraton 2160x720)
+	spawn_spot("l1_arc_silsilah", "Arsip: Silsilah\nRetna Kencana", "archive", Vector2(157, 595), "res://Assets/Objects/icon_archive.png")
+	spawn_spot("l1_arc_hadiri", "Arsip: Versi Asal\nPangeran Hadiri", "archive", Vector2(1260, 625), "res://Assets/Objects/icon_archive.png")
+	spawn_spot("l1_arc_sengkalan", "Arsip: Sengkalan\n10 April 1549", "archive", Vector2(1730, 625), "res://Assets/Objects/icon_archive.png")
 
 	# 2 Tantangan Utama Level 1
-	spawn_spot("challenge_chronology", "Tantangan 1A:\nKronologi Demak", "challenge", Vector2(640, 260), "res://Assets/Objects/icon_challenge.png")
-	spawn_spot("challenge_tapa", "Tantangan 1B:\nInvestigasi Danaraja", "challenge", Vector2(890, 250), "res://Assets/Objects/icon_challenge.png")
+	spawn_spot("challenge_chronology", "Tantangan 1A:\nKronologi Demak", "challenge", Vector2(920, 565), "res://Assets/Objects/icon_challenge.png")
+	spawn_spot("challenge_tapa", "Tantangan 1B:\nInvestigasi Danaraja", "challenge", Vector2(1530, 560), "res://Assets/Objects/icon_challenge.png")
 
-	# Gerbang Akhir Level 1
-	spawn_spot("gate_penobatan", "Gerbang Penobatan\n1549 (Tamat Lv.1)", "gate", Vector2(1110, 385), "res://Assets/Objects/icon_gate.png")
+	# Gerbang Akhir Level 1 (Gapura Candi Bentar sisi kanan)
+	spawn_spot("gate_penobatan", "Gerbang Penobatan\n1549 (Tamat Lv.1)", "gate", Vector2(1975, 540), "res://Assets/Objects/icon_gate.png")
 
 
 func _sync_completed_visuals() -> void:
@@ -122,6 +124,8 @@ func _try_complete_level1() -> void:
 
 func _draw() -> void:
 	super._draw()
+	if _has_bg_texture:
+		return
 	# Zona simbolis kabut Bukit Danaraja di sisi kanan atas (siluet & kabut edukatif)
 	draw_rect(Rect2(785, 130, 225, 180), Color(0.18, 0.25, 0.30, 0.42))
 	draw_rect(Rect2(785, 130, 225, 180), AssetLoader.COLOR_SEA_TEAL, false, 2.0)

@@ -16,7 +16,9 @@ func _ready() -> void:
 		"res://Assets/Environments/bg_level2.png",
 		Color("#1C353C"),
 		AssetLoader.COLOR_SEA_TEAL,
-		Vector2(210, 385)
+		Vector2(210, 560),
+		Rect2(50, 455, 2060, 205),
+		"res://Assets/Characters/walk_ratu.png"
 	)
 	player.set_character_label("Ratu Kalinyamat")
 	load_archives_from_json(ARCHIVES_PATH)
@@ -41,21 +43,21 @@ func _play_intro_dialogue() -> void:
 
 
 func _spawn_level2_spots() -> void:
-	# NPC Syahbandar & Empu Ukir Mantingan
-	spawn_spot("npc_syahbandar", "Ki Raksa\n(Syahbandar Jepara)", "npc", Vector2(205, 205), "res://Assets/Characters/portrait_penasihat.png")
-	spawn_spot("npc_sungging", "Sungging Badar Duwung\n(Seni Ukir Mantingan)", "npc", Vector2(255, 560), "res://Assets/Characters/portrait_sungging.png")
+	# NPC Syahbandar & Empu Ukir Mantingan (jalur dermaga & pasar pelabuhan 2160x720)
+	spawn_spot("npc_syahbandar", "Ki Raksa\n(Syahbandar Jepara)", "npc", Vector2(520, 585), "res://Assets/Characters/walk_penasihat.png")
+	spawn_spot("npc_sungging", "Sungging Badar Duwung\n(Seni Ukir Mantingan)", "npc", Vector2(1370, 560), "res://Assets/Characters/portrait_sungging.png")
 
 	# 3 Arsip Maritim & Budaya Level 2
-	spawn_spot("l2_arc_couto", "Arsip: Julukan\nDiego de Couto", "archive", Vector2(465, 195), "res://Assets/Objects/icon_archive.png")
-	spawn_spot("l2_arc_commenda", "Arsip: Commenda &\n4 Pelabuhan", "archive", Vector2(540, 565), "res://Assets/Objects/icon_archive.png")
-	spawn_spot("l2_arc_ukir", "Arsip: Seni Ukir\nMantingan", "archive", Vector2(850, 565), "res://Assets/Objects/icon_archive.png")
+	spawn_spot("l2_arc_couto", "Arsip: Julukan\nDiego de Couto", "archive", Vector2(360, 550), "res://Assets/Objects/icon_archive.png")
+	spawn_spot("l2_arc_commenda", "Arsip: Commenda &\n4 Pelabuhan", "archive", Vector2(1145, 535), "res://Assets/Objects/icon_archive.png")
+	spawn_spot("l2_arc_ukir", "Arsip: Seni Ukir\nMantingan", "archive", Vector2(1520, 610), "res://Assets/Objects/icon_archive.png")
 
 	# 2 Tantangan Utama Level 2
-	spawn_spot("challenge_trade", "Tantangan 2A:\nNiaga Commenda", "challenge", Vector2(665, 245), "res://Assets/Objects/icon_challenge.png")
-	spawn_spot("challenge_diplomacy", "Tantangan 2B:\nBalai Diplomasi", "challenge", Vector2(915, 245), "res://Assets/Objects/icon_challenge.png")
+	spawn_spot("challenge_trade", "Tantangan 2A:\nNiaga Commenda", "challenge", Vector2(855, 555), "res://Assets/Objects/icon_challenge.png")
+	spawn_spot("challenge_diplomacy", "Tantangan 2B:\nBalai Diplomasi", "challenge", Vector2(1735, 585), "res://Assets/Characters/walk_utusan.png")
 
-	# Gerbang Akhir Level 2
-	spawn_spot("gate_kejayaan", "Dermaga Kejayaan\n(Tamat Lv.2)", "gate", Vector2(1110, 385), "res://Assets/Objects/icon_gate.png")
+	# Gerbang Akhir Level 2 (Dermaga & papan peta sisi kanan)
+	spawn_spot("gate_kejayaan", "Dermaga Kejayaan\n(Tamat Lv.2)", "gate", Vector2(1990, 560), "res://Assets/Objects/icon_gate.png")
 
 
 func _sync_completed_visuals() -> void:
@@ -124,6 +126,8 @@ func _try_complete_level2() -> void:
 
 func _draw() -> void:
 	super._draw()
+	if _has_bg_texture:
+		return
 	# Zona perairan pelabuhan Jepara di sisi bawah-kanan
 	draw_rect(Rect2(970, 470, 250, 190), Color(0.08, 0.30, 0.38, 0.55))
 	draw_rect(Rect2(970, 470, 250, 190), AssetLoader.COLOR_GOLD, false, 2.0)

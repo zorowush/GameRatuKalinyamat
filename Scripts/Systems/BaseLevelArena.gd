@@ -1,18 +1,22 @@
 extends Node2D
 class_name BaseLevelArena
 ## Kelas dasar arena 2D untuk Level 1, 2, dan 3.
-## Mengelola HUD, pemain, daftar InteractableSpot, klik-untuk-jalan, dan modal tantangan/selesai level.
+## Mengelola latar scrolling horizontal (2160x720), HUD, pemain beranimasi 4 arah,
+## daftar InteractableSpot, klik-untuk-jalan, dan modal tantangan/selesai level.
 
 const HUD_SCENE := preload("res://Scenes/UI/GameplayHUD.tscn")
 const PLAYER_SCENE := preload("res://Scenes/Characters/Player.tscn")
 const SPOT_SCENE := preload("res://Scenes/Interactables/InteractableSpot.tscn")
-const INTERACT_RADIUS := 125.0
+const INTERACT_RADIUS := 135.0
 
 var level_number: int = 1
 var level_title: String = ""
 var bg_asset_path: String = ""
 var arena_floor_color: Color = Color("#342116")
 var arena_accent_color: Color = AssetLoader.COLOR_TERRACOTTA
+var world_width: float = 1280.0
+var world_height: float = 720.0
+var _has_bg_texture: bool = false
 
 var hud: CanvasLayer
 var player: CharacterBody2D
@@ -24,7 +28,16 @@ var _active_challenge: Node = null
 var _complete_overlay: Control = null
 
 
-func init_arena(p_level_num: int, p_title: String, p_bg_path: String, p_floor: Color, p_accent: Color, player_start: Vector2) -> void:
+func init_arena(
+	p_level_num: int,
+	p_title: String,
+	p_bg_path: String,
+	p_floor: Color,
+	p_accent: Color,
+	player_start: Vector2,
+	walk_bounds: Rect2 = Rect2(),
+	player_walk_sheet: String = "res://Assets/Characters/walk_ratu.png"
+) -> void:
 	level_number = p_level_num
 	level_title = p_title
 	bg_asset_path = p_bg_path
@@ -38,8 +51,15 @@ func init_arena(p_level_num: int, p_title: String, p_bg_path: String, p_floor: C
 
 	player = PLAYER_SCENE.instantiate()
 	player.position = player_start
+	if walk_bounds.size.x > 0.0 and walk_bounds.size.y > 0.0:
+		player.arena_bounds = walk_bounds
+	else:
+		player.arena_bounds = Rect2(64, 115, maxf(1152.0, world_width - 128.0), 550)
 	player.interact_requested.connect(_on_player_interact_requested)
 	add_child(player)
+	player.set_walk_spritesheet(player_walk_sheet)
+	player.configure_camera(world_width, world_height)
+	player.z_index = 5
 
 	hud = HUD_SCENE.instantiate()
 	add_child(hud)
@@ -79,14 +99,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if player == null or is_interaction_locked():
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var click_pos: Vector2 = get_global_mouse_position()
-		if click_pos.y > 76.0:
+		if event.position.y > 76.0:
+			var click_pos: Vector2 = get_global_mouse_position()
 			player.set_move_target(click_pos)
 
 
 func spawn_spot(spot_id: String, title: String, kind: String, pos: Vector2, asset_path: String = "") -> Node2D:
 	var spot := SPOT_SCENE.instantiate()
 	spot.position = pos
+	spot.z_index = 3
 	spot.setup(spot_id, title, kind, asset_path)
 	spot.interacted.connect(_handle_spot_interacted)
 	add_child(spot)
@@ -249,28 +270,42 @@ func _on_spot_interacted(_spot_id: String) -> void:
 
 
 func _setup_background() -> void:
+	_has_bg_texture = false
+	world_width = 1280.0
+	world_height = 720.0
 	if not bg_asset_path.is_empty() and ResourceLoader.exists(bg_asset_path):
 		var tex := load(bg_asset_path) as Texture2D
 		if tex != null:
 			var sprite := Sprite2D.new()
+			sprite.name = "ArenaBackground"
 			sprite.texture = tex
-			sprite.position = Vector2(640, 360)
+			sprite.centered = false
+			sprite.position = Vector2.ZERO
+			sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 			var tex_size := tex.get_size()
 			if tex_size.x > 0.0 and tex_size.y > 0.0:
-				sprite.scale = Vector2(1280.0 / tex_size.x, 720.0 / tex_size.y)
+				var scale_y := 720.0 / tex_size.y
+				var scaled_w := tex_size.x * scale_y
+				if scaled_w >= 1280.0:
+					sprite.scale = Vector2(scale_y, scale_y)
+					world_width = scaled_w
+				else:
+					sprite.scale = Vector2(1280.0 / tex_size.x, scale_y)
+					world_width = 1280.0
 			sprite.z_index = -10
 			add_child(sprite)
+			_has_bg_texture = true
 
 
 func _draw() -> void:
-	# Latar Relief Mantingan prosedural yang rapi & informatif jika bg_levelX.png belum tersedia
+	if _has_bg_texture:
+		return
+	# Latar Relief Mantingan prosedural hanya jika bg_levelX.png belum tersedia
 	draw_rect(Rect2(0, 0, 1280, 720), arena_floor_color)
 	draw_rect(Rect2(36, 90, 1208, 594), arena_floor_color.lightened(0.08))
 	draw_rect(Rect2(36, 90, 1208, 594), AssetLoader.COLOR_GOLD, false, 3.0)
-	# Jalur setapak dekoratif horizontal & vertikal
 	draw_rect(Rect2(80, 355, 1120, 56), arena_accent_color.darkened(0.45))
 	draw_rect(Rect2(610, 130, 60, 500), arena_accent_color.darkened(0.45))
-	# Ornamen sudut Relief Mantingan
 	for corner in [Vector2(66, 120), Vector2(1214, 120), Vector2(66, 654), Vector2(1214, 654)]:
 		draw_circle(corner, 12.0, AssetLoader.COLOR_GOLD)
 		draw_circle(corner, 6.0, arena_accent_color)

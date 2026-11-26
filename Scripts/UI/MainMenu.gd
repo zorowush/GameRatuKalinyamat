@@ -84,7 +84,8 @@ func _build_ui() -> void:
 	bg_tex.set_anchors_preset(Control.PRESET_FULL_RECT)
 	bg_tex.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	bg_tex.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	bg_tex.modulate = Color(1, 1, 1, 0.22)
+	bg_tex.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	bg_tex.modulate = Color(1, 1, 1, 0.42)
 	bg_tex.texture = AssetLoader.load_texture_or_placeholder(
 		"res://Assets/Environments/bg_menu.png", Vector2i(320, 180), AssetLoader.COLOR_DARK_BROWN, AssetLoader.COLOR_GOLD, "crest"
 	)

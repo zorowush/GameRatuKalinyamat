@@ -18,9 +18,12 @@ Dokumen ini mencatat seluruh sumber referensi sejarah, asal aset visual/audio/ko
 | Aset | Sumber | Lisensi | Status |
 | :--- | :--- | :--- | :--- |
 | `icon.svg` | Template bawaan Godot Engine 4 | MIT License | Aktif |
-| Placeholder Visual 2D Relief Mantingan | Dibangkitkan prosedural via `Scripts/Autoload/AssetLoader.gd` | Karya Tim (MIT) | Aktif (otomatis terganti saat PNG Anggi masuk ke `Assets/`) |
-| Efek Suara (SFX) Prosedural Cadangan | Disintesis prosedural (`AudioStreamWAV`) via `Scripts/Autoload/AudioManager.gd` | Karya Tim (MIT) | Aktif (otomatis terganti saat OGG Anggi masuk ke `Assets/Audio/SFX/`) |
-| Aset Visual & Audio Final (`Assets/`) | Diva Anggi Wulan Maulida (UI/Asset Creator) | Karya Orisinal Tim / CC0 (diisi saat serah terima) | Menunggu serah terima Fase 6 |
+| Potret Karakter (`portrait_retna_muda.png`, `portrait_ratu.png`, `portrait_sultan_trenggana.png`, `portrait_pangeran_hadiri.png`, `portrait_penasihat.png` [basis pedagang], `portrait_utusan.png`, `portrait_laksamana.png` [basis prajurit]) — `144×144` PNG | Diva Anggi Wulan Maulida (UI/Asset Creator) | Karya Orisinal Tim | **Terintegrasi** (`Assets/Characters/`) |
+| Spritesheet Animasi Jalan 4 Arah (`walk_retna_muda.png`, `walk_ratu.png`, `walk_sultan_trenggana.png`, `walk_pangeran_hadiri.png`, `walk_penasihat.png`, `walk_utusan.png`, `walk_prajurit.png`, `player_ratu.png`) — `144×192` / `48×48` PNG | Diva Anggi Wulan Maulida (UI/Asset Creator) | Karya Orisinal Tim | **Terintegrasi** (`Assets/Characters/`) |
+| Peta Latar Scrolling Pixel-Art (`bg_level1.png`, `bg_level2.png`, `bg_level3.png` — `2304×768`, dirender bersih dari tilemap tanpa baked NPC) & `bg_menu.png` (`1280×720`) | Diva Anggi Wulan Maulida (UI/Asset Creator) | Karya Orisinal Tim | **Terintegrasi** (`Assets/Environments/`) |
+| Ikon Objek Arena (`icon_archive.png` `48×48`, `icon_challenge.png` `96×96`, `icon_gate.png` `96×96` dari tileset Anggi) | Diva Anggi Wulan Maulida (UI/Asset Creator) | Karya Orisinal Tim | **Terintegrasi** (`Assets/Objects/`) |
+| Placeholder Visual Cadangan (`portrait_sungging.png`, 3 Lencana `Assets/UI/badge_*.png`) | Dibangkitkan prosedural via `Scripts/Autoload/AssetLoader.gd` | Karya Tim (MIT) | Aktif sementara — menunggu serah terima dari Anggi |
+| BGM & SFX (`Assets/Audio/BGM/*.ogg`, `Assets/Audio/SFX/*.ogg`) | SFX prosedural cadangan (`AudioStreamWAV`) via `Scripts/Autoload/AudioManager.gd` | Karya Tim (MIT) | Aktif sementara — menunggu audio OGG final dari Anggi |
 
 ---
 
